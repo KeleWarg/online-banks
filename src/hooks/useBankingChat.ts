@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { ChatMessage, ChatResponse, QuickReply } from '../types/bankingChat';
 
-const API_URL = import.meta.env.VITE_BANKING_CHAT_API_URL || 'http://localhost:3001/api/chat';
+const API_URL = import.meta.env.VITE_BANKING_CHAT_API_URL || '/api/chat';
 
 const buildId = () => `msg-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
