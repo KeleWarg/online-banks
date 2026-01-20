@@ -11,7 +11,13 @@ const BankRow: React.FC<{ result: BankResult; rank: number }> = ({ result, rank 
   const ratingText = `${bank.rating.toFixed(1)} / 5`;
 
   return (
-    <div className="flex items-start gap-4 p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50/50 transition-colors">
+    <div 
+      className="flex items-start gap-4 p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50/50 transition-colors opacity-0 animate-slideUp"
+      style={{ 
+        animationDelay: `${(rank - 1) * 150}ms`,
+        animationFillMode: 'forwards'
+      }}
+    >
       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#007AC8] text-white flex items-center justify-center font-bold text-sm">
         {rank}
       </div>

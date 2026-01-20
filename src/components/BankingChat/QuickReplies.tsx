@@ -21,13 +21,18 @@ export const QuickReplies: React.FC<QuickRepliesProps> = ({ options, onSelect, d
             text-sm font-medium
             border border-[#007AC8]
             transition-all duration-200
+            opacity-0 animate-slideUp
             ${
               disabled
                 ? 'opacity-50 cursor-not-allowed bg-gray-50 text-gray-400 border-gray-300'
                 : 'bg-white text-[#007AC8] hover:bg-[#007AC8] hover:text-white hover:scale-105 hover:shadow-md active:scale-95'
             }
           `}
-          style={{ fontFamily: 'Work Sans' }}
+          style={{ 
+            fontFamily: 'Work Sans',
+            animationDelay: `${index * 75}ms`,
+            animationFillMode: 'forwards'
+          }}
         >
           {option.text}
         </button>

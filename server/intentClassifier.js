@@ -47,10 +47,104 @@ const READY_PATTERNS = [
   /what are my options/i
 ];
 
+// Conversational patterns for natural responses
+const GREETING_PATTERNS = [
+  /^(hi|hello|hey|howdy|hiya|greetings|yo|sup)\b/i,
+  /^good (morning|afternoon|evening)/i
+];
+
+const THANKS_PATTERNS = [
+  /thank/i,
+  /thanks/i,
+  /appreciate/i,
+  /helpful/i,
+  /great job/i
+];
+
+const CONFUSED_PATTERNS = [
+  /^(what|huh|confused|idk|i don'?t know|not sure|maybe)\?*$/i,
+  /what do you mean/i,
+  /i'?m confused/i,
+  /don'?t understand/i,
+  /can you explain/i
+];
+
+const AFFIRMATIVE_PATTERNS = [
+  /^(yes|yeah|yep|yup|sure|ok|okay|alright|sounds good|let'?s do it|go ahead)\b/i
+];
+
+const NEGATIVE_PATTERNS = [
+  /^no\b/i,
+  /^(nope|nah|not really|nevermind|cancel|stop)\b/i,
+  /no thanks/i,
+  /no thank you/i,
+  /i don'?t want/i,
+  /not interested/i,
+  /never\s*mind/i
+];
+
+const OFF_TOPIC_PATTERNS = [
+  /weather/i,
+  /sports/i,
+  /news/i,
+  /joke/i,
+  /pizza/i,
+  /movie/i,
+  /music/i,
+  /game/i,
+  /who are you/i,
+  /your name/i,
+  /are you (a |an )?(bot|ai|robot|human)/i
+];
+
+const BANKING_RELATED = [
+  /bank/i,
+  /account/i,
+  /money/i,
+  /save|saving/i,
+  /check|checking/i,
+  /deposit/i,
+  /withdraw/i,
+  /interest/i,
+  /apy/i,
+  /fee/i,
+  /atm/i,
+  /online/i,
+  /cd\b/i,
+  /rate/i
+];
+
 export const classifyIntent = (message) => {
   const normalized = message.toLowerCase().trim();
 
   const readyForResults = READY_PATTERNS.some((pattern) => pattern.test(normalized));
+  const isBankingRelated = BANKING_RELATED.some((pattern) => pattern.test(normalized));
+
+  // Check conversational patterns first (order matters!)
+  if (GREETING_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'greeting', readyForResults: false };
+  }
+
+  // Check negative before thanks (to catch "no thanks")
+  if (NEGATIVE_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'negative', readyForResults: false };
+  }
+
+  if (THANKS_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'thanks', readyForResults: false };
+  }
+
+  if (CONFUSED_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'confused', readyForResults: false };
+  }
+
+  if (AFFIRMATIVE_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'affirmative', readyForResults: false };
+  }
+
+  if (OFF_TOPIC_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return { type: 'off_topic', readyForResults: false };
+  }
 
   if (EDUCATION_PATTERNS.some((pattern) => pattern.test(normalized))) {
     return { type: 'education_request', topic: message, readyForResults };
@@ -80,7 +174,17 @@ export const classifyIntent = (message) => {
     }
   }
 
-  return { type: 'generic_query', readyForResults };
+  // Check if it's at least banking-related but unrecognized
+  if (isBankingRelated) {
+    return { type: 'banking_unclear', readyForResults };
+  }
+
+  // Completely unrecognized - check message length to determine if gibberish
+  if (normalized.length < 3 || !/[a-z]/i.test(normalized)) {
+    return { type: 'gibberish', readyForResults: false };
+  }
+
+  return { type: 'unrecognized', readyForResults };
 };
 
 export const extractDataFromMessage = (message) => {

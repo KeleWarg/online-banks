@@ -210,6 +210,29 @@ export const handleChat = ({ state, message, action }) => {
     };
   }
 
+  // Handle explain_process action
+  if (action === 'explain_process') {
+    return {
+      reply: "Here's how I work: I ask a few quick questions about what you're looking for — the type of account, what features matter most, and how you'll use it. Then I match you with the best online banks from Forbes Advisor's rankings. It only takes a minute! Ready to try?",
+      options: quickReplies.accountType,
+      updatedState
+    };
+  }
+
+  // Handle show_popular action - show results with default preferences
+  if (action === 'show_popular') {
+    const popularState = { 
+      ...updatedState, 
+      accountType: updatedState.accountType || 'both',
+      priority: updatedState.priority || 'apy'
+    };
+    return { 
+      ...buildResultsResponse(popularState), 
+      reply: "Here are some of the most popular online banks right now, known for great rates and low fees:",
+      updatedState: popularState 
+    };
+  }
+
   // Handle show_results action
   if (action === 'show_results') {
     if (hasMinimumData(updatedState)) {
@@ -251,6 +274,109 @@ export const handleChat = ({ state, message, action }) => {
     return { ...buildResultsResponse(updatedState), updatedState };
   }
 
+  // Handle greetings
+  if (intent.type === 'greeting') {
+    return {
+      reply: "Hey there! I'm here to help you find the best online bank. Let's get started — what type of account are you looking for?",
+      options: quickReplies.accountType,
+      updatedState
+    };
+  }
+
+  // Handle thanks
+  if (intent.type === 'thanks') {
+    const hasResults = hasMinimumData(updatedState);
+    return {
+      reply: hasResults 
+        ? "You're welcome! Feel free to ask if you have more questions about these banks, or start over if you want to explore different options."
+        : "Happy to help! Let's keep going — what type of account interests you?",
+      options: hasResults ? quickReplies.afterResults : quickReplies.accountType,
+      updatedState
+    };
+  }
+
+  // Handle confusion
+  if (intent.type === 'confused') {
+    const contextHelp = !updatedState.accountType 
+      ? "No worries! I'm helping you find an online bank. Start by telling me what type of account you need — checking for everyday spending, savings for earning interest, or both?"
+      : !updatedState.priority
+        ? "Let me clarify — I'm trying to understand what's most important to you in a bank. Is it earning the highest interest? Avoiding fees? Or maybe having lots of ATM access?"
+        : "I'm finding you the best online banks based on your preferences. Just one more question — how do you usually put money into your account?";
+    
+    return {
+      reply: contextHelp,
+      options: !updatedState.accountType 
+        ? quickReplies.accountType 
+        : !updatedState.priority 
+          ? quickReplies.priority 
+          : quickReplies.access,
+      updatedState
+    };
+  }
+
+  // Handle affirmative responses
+  if (intent.type === 'affirmative') {
+    if (hasMinimumData(updatedState)) {
+      return { ...buildResultsResponse(updatedState), updatedState };
+    }
+    return {
+      reply: "Great! Let's continue.",
+      ...askNextQuestion(updatedState),
+      updatedState
+    };
+  }
+
+  // Handle negative responses
+  if (intent.type === 'negative') {
+    return {
+      reply: "No problem! Would you like to start over with different preferences, or is there something specific I can help clarify?",
+      options: [
+        { text: 'Start over', action: 'restart' },
+        { text: 'Explain how this works', action: 'explain_process' },
+        { text: 'Just show me popular banks', action: 'show_popular' }
+      ],
+      updatedState
+    };
+  }
+
+  // Handle off-topic
+  if (intent.type === 'off_topic') {
+    return {
+      reply: "I'm specifically designed to help you find the best online bank! I can compare rates, fees, and features across top banks. Want me to help you find a great account?",
+      options: quickReplies.accountType,
+      updatedState
+    };
+  }
+
+  // Handle gibberish
+  if (intent.type === 'gibberish') {
+    return {
+      reply: "I didn't quite catch that. Try telling me what type of bank account you're looking for, or just tap one of the options below!",
+      options: quickReplies.accountType,
+      updatedState
+    };
+  }
+
+  // Handle unrecognized but potentially on-topic
+  if (intent.type === 'unrecognized' || intent.type === 'banking_unclear') {
+    // Give a helpful nudge back to the flow
+    const nudge = !updatedState.accountType
+      ? "I want to make sure I find the right banks for you. Are you looking for a checking account, savings account, or both?"
+      : !updatedState.priority
+        ? "Got it! To narrow down the best options, what matters most — high interest rates, low fees, or something else?"
+        : "Thanks! One more thing — how do you plan to deposit money into your account?";
+    
+    return {
+      reply: nudge,
+      options: !updatedState.accountType 
+        ? quickReplies.accountType 
+        : !updatedState.priority 
+          ? quickReplies.priority 
+          : quickReplies.access,
+      updatedState
+    };
+  }
+
   // Handle education requests
   if (intent.type === 'education_request') {
     const content = findEducationContent(intent.topic);
@@ -265,6 +391,12 @@ export const handleChat = ({ state, message, action }) => {
         updatedState
       };
     }
+    // If no content found, treat as banking_unclear
+    return {
+      reply: "That's a great question! While I don't have specific info on that, I can definitely help you compare online banks. What type of account are you interested in?",
+      options: quickReplies.accountType,
+      updatedState
+    };
   }
 
   // Handle specific intent signals from messages
