@@ -1,5 +1,6 @@
 import { ArrowRightIcon, ExternalLinkIcon, TrophyIcon } from "lucide-react";
 import React, { useState } from "react";
+import nbkcBankLogo from "../../../../assets/brands/banks/nbkc-bank.png";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Separator } from "../../../../components/ui/separator";
@@ -50,18 +51,26 @@ export const PetsBestCard4 = (): JSX.Element => {
 
           <div className="grid grid-cols-12 gap-3 sm:gap-5 lg:gap-8 w-full max-w-full overflow-hidden">
             <div className="col-span-12 lg:col-span-5 relative min-w-0">
-              <div className="w-full h-[58px] bg-[#f8f8fa] rounded-[16px_16px_0px_0px] overflow-hidden flex items-center justify-center">
+              {/* Logo Section */}
+              <div className="w-full h-[180px] bg-[#f8f8fa] rounded-[16px_16px_0px_0px] overflow-hidden flex items-center justify-center">
                 <img 
-                  src="/avatar-placeholder.svg" 
+                  src={nbkcBankLogo}
                   alt="NBKC Bank Logo" 
-                  className="w-[125px] h-[58px] object-contain"
+                  className="max-w-[200px] max-h-[120px] object-contain"
                 />
               </div>
-              <img
-                className="w-full h-[207px] object-cover rounded-[0px_0px_16px_16px]"
-                alt="NBKC Bank"
-                src="/avatar-placeholder.svg"
-              />
+              {/* Forbes Rating Section */}
+              <div className="w-full bg-white rounded-[0px_0px_16px_16px] border border-t-0 border-[#E5E7EB] p-4 flex items-center justify-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-[52px] h-[52px] rounded-full border-[3px] border-[#F3C060] flex items-center justify-center">
+                    <span className="text-[#007AC8] text-xl font-bold" style={{ fontFamily: 'Work Sans' }}>4.6</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-black text-sm font-bold" style={{ fontFamily: 'Work Sans' }}>Forbes <span className="font-normal text-xs">ADVISOR</span></span>
+                    <span className="text-[#606F7F] text-sm" style={{ fontFamily: 'Work Sans' }}>Rating <span className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-[#CED4DB] text-[10px]">i</span></span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="col-span-12 lg:col-span-7 flex flex-col gap-2 min-w-0">

@@ -1,4 +1,5 @@
 import React from "react";
+import sofiLogo from "../../../assets/brands/banks/sofi.png";
 
 export const CarouselCard6 = (): JSX.Element => {
   return (
@@ -75,7 +76,7 @@ export const CarouselCard6 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="SoFi"
-                    src="/avatar-placeholder.svg"
+                    src={sofiLogo}
                   />
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import americanExpressLogo from "../../../assets/brands/banks/american-express.png";
 
 export const CarouselCard4 = (): JSX.Element => {
   return (
@@ -63,7 +64,7 @@ export const CarouselCard4 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="American Express High Yield Savings"
-                    src="/avatar-placeholder.svg"
+                    src={americanExpressLogo}
                   />
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { StarIcon } from "lucide-react";
+import bank5ConnectLogo from "../../../assets/brands/banks/bank5-connect.png";
 
 export const CarouselCard3 = (): JSX.Element => {
   return (
@@ -79,7 +80,7 @@ export const CarouselCard3 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="Bank5 Connect"
-                    src="/avatar-placeholder.svg"
+                    src={bank5ConnectLogo}
                   />
                 </div>
               </div>

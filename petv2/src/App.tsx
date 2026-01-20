@@ -1,35 +1,20 @@
 import React, { lazy, Suspense, useState, useRef } from "react";
 import { HeroBanner } from "./screens/hero-banner/HeroBanner";
-import { ChatOverlay } from './components/ChatOverlay';
+import { BankingChatContainer } from './components/BankingChat';
 import { StickyBottomBar } from './components/StickyBottomBar';
 import { TopEditorPicksView } from './screens/TopEditorPicksView/TopEditorPicksView';
 import { DiveIntoDataView } from './screens/DiveIntoDataView/DiveIntoDataView';
-import type { ProviderRecommendation, UserPreferences } from './components/ChatOverlay';
-import {
-  INSURANCE_PLANS,
-  COST_DATA,
-  PLAN_DETAILS_DATA,
-  USER_OPINION_DATA,
-  CLAIMS_DATA
-} from './data/insurance-providers';
 
 // Lazy load heavy components for better performance
 const BestPetsCarousel = lazy(() => import("./screens/BestPetsCarousel/BestPetsCarousel").then(module => ({ default: module.BestPetsCarousel })));
 const ElementPc = lazy(() => import("./screens/ElementsPC/ElementPc").then(module => ({ default: module.ElementPc })));
 
 export const App = (): JSX.Element => {
-  const [recommendations, setRecommendations] = useState<ProviderRecommendation[] | null>(null);
-  const [userPrefs, setUserPrefs] = useState<UserPreferences | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showTopPicks, setShowTopPicks] = useState(false);
   const [showDiveIntoData, setShowDiveIntoData] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const quickDiveRef = useRef<HTMLDivElement>(null);
-
-  const handleRecommendations = (recs: ProviderRecommendation[], preferences: UserPreferences) => {
-    setRecommendations(recs);
-    setUserPrefs(preferences);
-  };
 
   const handleOpenChat = () => {
     setIsChatOpen(true);
@@ -121,13 +106,7 @@ export const App = (): JSX.Element => {
         />
       )}
       
-      <ChatOverlay
-        plans={INSURANCE_PLANS}
-        costData={COST_DATA}
-        planDetails={PLAN_DETAILS_DATA}
-        userOpinions={USER_OPINION_DATA}
-        claimsData={CLAIMS_DATA}
-        onRecommendations={handleRecommendations}
+      <BankingChatContainer
         isOpen={isChatOpen}
         onClose={handleCloseChat}
       />

@@ -386,21 +386,9 @@ export const PetInsuranceComparison: React.FC<PetInsuranceComparisonProps> = ({ 
                         <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 24, display: 'flex'}}>
                           <div style={{alignSelf: 'stretch', color: '#333333', fontSize: 24, fontFamily: 'Work Sans', fontWeight: '700', lineHeight: '29px', wordWrap: 'break-word'}}>Compare Account Types by Bank</div>
                           <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 16, display: 'flex'}}>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Start by comparing account types. Most online banks offer a mix of checking, savings and CDs, with some also offering money market accounts.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Checking accounts. Everyday spending with debit cards, bill pay and direct deposit.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Savings accounts. Higher interest for cash reserves and emergency funds.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Money market accounts. Savings-like with limited transaction access and higher yields.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Certificates of deposit (CDs). Fixed-rate savings for a set term.
-                            </div>
+                            <p style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word', margin: 0}}>
+                              Start by comparing account types. Most online banks offer a mix of checking, savings and CDs, with some also offering money market accounts. <strong>Checking accounts</strong> are for everyday spending with debit cards, bill pay and direct deposit. <strong>Savings accounts</strong> offer higher interest for cash reserves and emergency funds. <strong>Money market accounts</strong> are savings-like with limited transaction access and higher yields. <strong>Certificates of deposit (CDs)</strong> provide fixed-rate savings for a set term.
+                            </p>
                             <div>
                               <span style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>Related: </span>
                               <a
@@ -425,18 +413,9 @@ export const PetInsuranceComparison: React.FC<PetInsuranceComparisonProps> = ({ 
                         <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 24, display: 'flex'}}>
                           <div style={{alignSelf: 'stretch', color: '#333333', fontSize: 24, fontFamily: 'Work Sans', fontWeight: '700', lineHeight: '29px', wordWrap: 'break-word'}}>Rates and Fee Structure</div>
                           <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 16, display: 'flex'}}>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              The best online bank for you balances APY, fees and access. Compare how each bank handles minimum balances, overdraft policies and ATM reimbursements.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              APY and rate tiers. Some banks offer higher rates only at certain balances or with direct deposit.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              Monthly fees. Look for no-fee accounts or easy ways to waive fees.
-                            </div>
-                            <div style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>
-                              ATM access and reimbursements. Check network size and reimbursement limits if you use cash often.
-                            </div>
+                            <p style={{color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word', margin: 0}}>
+                              The best online bank for you balances APY, fees and access. Compare how each bank handles minimum balances, overdraft policies and ATM reimbursements. <strong>APY and rate tiers</strong>: some banks offer higher rates only at certain balances or with direct deposit. <strong>Monthly fees</strong>: look for no-fee accounts or easy ways to waive fees. <strong>ATM access and reimbursements</strong>: check network size and reimbursement limits if you use cash often.
+                            </p>
                           </div>
                         </div>
                       </div>

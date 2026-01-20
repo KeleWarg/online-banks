@@ -1,4 +1,5 @@
 import React from "react";
+import discoverBankLogo from "../../../assets/brands/banks/discover-bank.png";
 
 export const CarouselCard1 = (): JSX.Element => {
   return (
@@ -64,7 +65,7 @@ export const CarouselCard1 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="Discover Bank"
-                    src="/avatar-placeholder.svg"
+                    src={discoverBankLogo}
                   />
                 </div>
               </div>

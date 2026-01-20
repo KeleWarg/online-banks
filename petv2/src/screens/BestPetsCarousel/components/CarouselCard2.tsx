@@ -1,4 +1,5 @@
 import React from "react";
+import allyBankLogo from "../../../assets/brands/banks/ally-bank.png";
 
 export const CarouselCard2 = (): JSX.Element => {
   return (
@@ -62,7 +63,7 @@ export const CarouselCard2 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="Ally Bank logo"
-                    src="/avatar-placeholder.svg"
+                    src={allyBankLogo}
                   />
                 </div>
               </div>

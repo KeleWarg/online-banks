@@ -1,4 +1,5 @@
 import React from "react";
+import capitalOneLogo from "../../../assets/brands/banks/capital-one-360.png";
 
 export const CarouselCard5 = (): JSX.Element => {
   return (
@@ -63,7 +64,7 @@ export const CarouselCard5 = (): JSX.Element => {
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
                     alt="Capital One 360"
-                    src="/avatar-placeholder.svg"
+                    src={capitalOneLogo}
                   />
                 </div>
               </div>

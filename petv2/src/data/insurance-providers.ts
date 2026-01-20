@@ -1,3 +1,14 @@
+import bank5ConnectLogo from "../assets/brands/banks/bank5-connect.png";
+import quonticBankLogo from "../assets/brands/banks/quontic-bank.png";
+import allyBankLogo from "../assets/brands/banks/ally-bank.png";
+import discoverBankLogo from "../assets/brands/banks/discover-bank.png";
+import synchronyBankLogo from "../assets/brands/banks/synchrony-bank.jpg";
+import nbkcBankLogo from "../assets/brands/banks/nbkc-bank.png";
+import sofiLogo from "../assets/brands/banks/sofi.png";
+import everBankLogo from "../assets/brands/banks/everbank.jpg";
+import capitalOneLogo from "../assets/brands/banks/capital-one-360.png";
+import firstInternetBankLogo from "../assets/brands/banks/first-internet-bank.png";
+
 // Insurance provider data - extracted from components for better maintainability
 export interface InsurancePlan {
   provider: string;
@@ -48,7 +59,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Bank5 Connect",
     category: "Best Online Bank for\nChecking Accounts",
     description: "Checking, savings and CDs with a checking-first focus.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: bank5ConnectLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -57,7 +68,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Quontic Bank",
     category: "Best Online Bank for\nHigh APYs",
     description: "Savings, checking, MMAs and CDs with strong yields.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: quonticBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -66,7 +77,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Ally Bank",
     category: "Best Online Bank for\nSavings Tools",
     description: "Savings, checking, MMAs and CDs with goal tools.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: allyBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: true,
@@ -75,7 +86,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Discover® Bank",
     category: "Best Online Bank for\nNo Fees",
     description: "Savings, checking and CDs with low fees.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: discoverBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -84,7 +95,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Synchrony Bank",
     category: "Best Online Bank for\nHigh-Yield Savings",
     description: "High-yield savings, MMAs, CDs and IRAs.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: synchronyBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -93,7 +104,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "NBKC Bank",
     category: "Best Online Bank for\nFull-Service Banking",
     description: "Savings, checking, MMAs and CDs in one place.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: nbkcBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -102,7 +113,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "SoFi®",
     category: "Best Online Bank for\nMobile Check Deposit",
     description: "Checking and savings with mobile-first access.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: sofiLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -111,7 +122,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "EverBank",
     category: "Best Online Bank for\nCDs",
     description: "Checking, MMAs and CDs with competitive rates.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: everBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -120,7 +131,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "Capital One 360",
     category: "Best Online Bank for\nCustomer Service",
     description: "Savings, checking and CDs with strong support.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: capitalOneLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,
@@ -129,7 +140,7 @@ export const INSURANCE_PLANS: InsurancePlan[] = [
     provider: "First Internet Bank",
     category: "Best Online Bank for\nSmall Business",
     description: "Checking, savings, MMAs and CDs for SMBs.",
-    logoSrc: "/avatar-placeholder.svg",
+    logoSrc: firstInternetBankLogo,
     petImageSrc: "/avatar-placeholder.svg",
     petImageClasses: "absolute -top-2.5 left-[206px] w-[106px] h-[146px] hidden",
     isPopular: false,

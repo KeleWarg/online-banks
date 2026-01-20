@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { TableCell } from '../../components/common';
 import { COST_DATA } from '../../data/insurance-providers';
+import bank5ConnectLogo from '../../assets/brands/banks/bank5-connect.png';
+import quonticBankLogo from '../../assets/brands/banks/quontic-bank.png';
+import allyBankLogo from '../../assets/brands/banks/ally-bank.png';
 
 interface TopEditorPicksViewProps {
   onBack: () => void;
@@ -148,7 +151,7 @@ export const TopEditorPicksView: React.FC<TopEditorPicksViewProps> = ({ onBack }
                                 <img
                                   style={{width: '64px', height: '64px', objectFit: 'contain'}}
                                   alt="Bank5 Connect"
-                                  src="/avatar-placeholder.svg"
+                                  src={bank5ConnectLogo}
                                 />
                               </div>
                             </div>
@@ -217,7 +220,7 @@ export const TopEditorPicksView: React.FC<TopEditorPicksViewProps> = ({ onBack }
                                 <img
                                   style={{width: '64px', height: '64px', objectFit: 'contain'}}
                                   alt="Quontic Bank"
-                                  src="/avatar-placeholder.svg"
+                                  src={quonticBankLogo}
                                 />
                               </div>
                             </div>
@@ -286,7 +289,7 @@ export const TopEditorPicksView: React.FC<TopEditorPicksViewProps> = ({ onBack }
                                 <img
                                   style={{width: '64px', height: '64px', objectFit: 'contain'}}
                                   alt="Ally Bank"
-                                  src="/avatar-placeholder.svg"
+                                  src={allyBankLogo}
                                 />
                               </div>
                             </div>
