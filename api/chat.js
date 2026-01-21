@@ -1,167 +1,192 @@
-// Vercel Serverless Function for Banking Chat API
+// Vercel Serverless Function for Credit Card Chat API
 // All logic bundled into a single file for serverless deployment
 
-// ============== BANKS DATA ==============
-const BANKS = [
+// ============== CARDS DATA ==============
+const CARDS = [
   {
-    id: 'bank5-connect',
-    name: 'Bank5 Connect',
-    rating: 5.0,
-    category: 'Best Online Bank for Checking Accounts',
-    description: 'Checking, savings and CDs with a checking-first focus.',
-    accountTypes: ['checking', 'savings', 'cds'],
-    priorityTags: ['fees', 'ease'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/bank5-connect-review/'
-  },
-  {
-    id: 'quontic-bank',
-    name: 'Quontic Bank',
+    id: 'chase-sapphire-preferred',
+    name: 'Chase Sapphire Preferred® Card',
     rating: 4.9,
-    category: 'Best Online Bank for High APYs',
-    description: 'Savings, checking, MMAs and CDs with strong yields.',
-    accountTypes: ['checking', 'savings', 'money_market', 'cds'],
-    priorityTags: ['apy'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.quonticbank.com/'
+    category: 'Best Travel Rewards Card',
+    description: '5x on travel through Chase, 3x on dining, streaming and online groceries. 25% bonus when redeeming for travel.',
+    cardTypes: ['travel', 'rewards'],
+    priorityTags: ['travel', 'dining', 'points'],
+    features: ['no_foreign_fees', 'travel_insurance', 'transfer_partners'],
+    annualFee: 95,
+    signupBonus: '60,000 points after spending $4,000 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/chase-sapphire-preferred/'
   },
   {
-    id: 'ally-bank',
-    name: 'Ally Bank',
+    id: 'capital-one-venture',
+    name: 'Capital One Venture Rewards',
     rating: 4.8,
-    category: 'Best Online Bank for Savings Tools',
-    description: 'Savings, checking, MMAs and CDs with goal tools.',
-    accountTypes: ['checking', 'savings', 'money_market', 'cds'],
-    priorityTags: ['tools', 'ease'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/ally-bank-review/'
+    category: 'Best Flat-Rate Travel Card',
+    description: 'Unlimited 2x miles on every purchase. Simple redemption with no blackout dates.',
+    cardTypes: ['travel', 'rewards'],
+    priorityTags: ['travel', 'simplicity'],
+    features: ['no_foreign_fees', 'transfer_partners', 'travel_insurance'],
+    annualFee: 95,
+    signupBonus: '75,000 miles after spending $4,000 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/capital-one-venture-rewards/'
   },
   {
-    id: 'discover-bank',
-    name: 'Discover Bank',
+    id: 'wells-fargo-active-cash',
+    name: 'Wells Fargo Active Cash® Card',
+    rating: 4.9,
+    category: 'Best Flat-Rate Cash Back Card',
+    description: 'Unlimited 2% cash rewards on all purchases. No category tracking needed.',
+    cardTypes: ['cash_back'],
+    priorityTags: ['cash_back', 'simplicity', 'no_fee'],
+    features: ['cell_phone_protection', 'zero_liability'],
+    annualFee: 0,
+    signupBonus: '$200 after spending $500 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/wells-fargo-active-cash/'
+  },
+  {
+    id: 'chase-freedom-unlimited',
+    name: 'Chase Freedom Unlimited®',
+    rating: 4.8,
+    category: 'Best Hybrid Cash Back Card',
+    description: '5% on travel through Chase, 3% on dining and drugstores, 1.5% on everything else.',
+    cardTypes: ['cash_back', 'rewards'],
+    priorityTags: ['cash_back', 'dining', 'flexibility'],
+    features: ['purchase_protection', 'extended_warranty'],
+    annualFee: 0,
+    signupBonus: '$200 after spending $500 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/chase-freedom-unlimited/'
+  },
+  {
+    id: 'discover-it-cash-back',
+    name: 'Discover it® Cash Back',
     rating: 4.7,
-    category: 'Best Online Bank for No Fees',
-    description: 'Savings, checking and CDs with low fees.',
-    accountTypes: ['checking', 'savings', 'cds'],
-    priorityTags: ['fees'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/discover-bank-review/'
+    category: 'Best Rotating Categories Card',
+    description: '5% cash back on rotating quarterly categories, 1% on all other purchases. First year cashback match.',
+    cardTypes: ['cash_back'],
+    priorityTags: ['cash_back', 'bonus_categories'],
+    features: ['cashback_match', 'no_foreign_fees', 'free_fico'],
+    annualFee: 0,
+    signupBonus: 'Unlimited Cashback Match for first year',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/discover-it-cash-back/'
   },
   {
-    id: 'synchrony-bank',
-    name: 'Synchrony Bank',
+    id: 'citi-double-cash',
+    name: 'Citi Double Cash® Card',
     rating: 4.7,
-    category: 'Best Online Bank for High-Yield Savings',
-    description: 'High-yield savings, MMAs, CDs and IRAs.',
-    accountTypes: ['savings', 'money_market', 'cds'],
-    priorityTags: ['apy'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/synchrony-bank-review/'
+    category: 'Best for Balance Transfers',
+    description: '2% cash back (1% when you buy, 1% when you pay). 18-month 0% intro APR on balance transfers.',
+    cardTypes: ['cash_back', 'balance_transfer'],
+    priorityTags: ['cash_back', 'balance_transfer', 'simplicity'],
+    features: ['zero_liability', 'citi_entertainment'],
+    annualFee: 0,
+    signupBonus: 'N/A - focus on ongoing rewards',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/citi-double-cash/'
   },
   {
-    id: 'nbkc-bank',
-    name: 'NBKC Bank',
+    id: 'amex-gold',
+    name: 'American Express® Gold Card',
+    rating: 4.8,
+    category: 'Best for Dining & Groceries',
+    description: '4x points at restaurants and U.S. supermarkets (up to $25K/year). $120 dining credit annually.',
+    cardTypes: ['rewards', 'dining'],
+    priorityTags: ['dining', 'groceries', 'points'],
+    features: ['dining_credit', 'uber_credit', 'no_foreign_fees'],
+    annualFee: 250,
+    signupBonus: '60,000 points after spending $6,000 in 6 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/american-express-gold-card/'
+  },
+  {
+    id: 'capital-one-savor',
+    name: 'Capital One SavorOne Cash Rewards',
     rating: 4.6,
-    category: 'Best Online Bank for Full-Service Banking',
-    description: 'Savings, checking, MMAs and CDs in one place.',
-    accountTypes: ['checking', 'savings', 'money_market', 'cds'],
-    priorityTags: ['support', 'ease'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/nbkc-bank-review/'
+    category: 'Best for Dining & Entertainment',
+    description: '3% on dining, entertainment, streaming and grocery stores. 1% on everything else.',
+    cardTypes: ['cash_back', 'dining'],
+    priorityTags: ['dining', 'entertainment', 'no_fee'],
+    features: ['no_foreign_fees', 'extended_warranty'],
+    annualFee: 0,
+    signupBonus: '$200 after spending $500 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/capital-one-savorone/'
   },
   {
-    id: 'sofi',
-    name: 'SoFi',
+    id: 'chase-sapphire-reserve',
+    name: 'Chase Sapphire Reserve®',
+    rating: 4.7,
+    category: 'Best Premium Travel Card',
+    description: '10x on hotels and car rentals through Chase, 5x on flights, 3x on dining. $300 annual travel credit.',
+    cardTypes: ['travel', 'premium'],
+    priorityTags: ['travel', 'luxury', 'lounge_access'],
+    features: ['lounge_access', 'global_entry_credit', 'travel_insurance', 'no_foreign_fees'],
+    annualFee: 550,
+    signupBonus: '60,000 points after spending $4,000 in 3 months',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/chase-sapphire-reserve/'
+  },
+  {
+    id: 'discover-it-secured',
+    name: 'Discover it® Secured Credit Card',
     rating: 4.5,
-    category: 'Best Online Bank for Mobile Check Deposit',
-    description: 'Checking and savings with mobile-first access.',
-    accountTypes: ['checking', 'savings'],
-    priorityTags: ['mobile', 'ease'],
-    accessFeatures: ['mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.sofi.com/banking/'
-  },
-  {
-    id: 'everbank',
-    name: 'EverBank',
-    rating: 4.5,
-    category: 'Best Online Bank for CDs',
-    description: 'Checking, MMAs and CDs with competitive rates.',
-    accountTypes: ['checking', 'money_market', 'cds'],
-    priorityTags: ['apy'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.forbes.com/advisor/banking/everbank-review/'
-  },
-  {
-    id: 'capital-one-360',
-    name: 'Capital One 360',
-    rating: 4.4,
-    category: 'Best Online Bank for Customer Service',
-    description: 'Savings, checking and CDs with strong support.',
-    accountTypes: ['checking', 'savings', 'cds'],
-    priorityTags: ['support', 'ease'],
-    accessFeatures: ['atm', 'mobile_deposit', 'direct_deposit', 'cash_deposit'],
-    applyUrl: 'https://www.capitalone.com/bank/'
-  },
-  {
-    id: 'first-internet-bank',
-    name: 'First Internet Bank',
-    rating: 4.4,
-    category: 'Best Online Bank for Small Business',
-    description: 'Checking, savings, MMAs and CDs for SMBs.',
-    accountTypes: ['checking', 'savings', 'money_market', 'cds', 'business'],
-    priorityTags: ['support'],
-    accessFeatures: ['mobile_deposit', 'direct_deposit'],
-    applyUrl: 'https://www.firstib.com/'
+    category: 'Best for Building Credit',
+    description: '2% cash back at gas stations and restaurants (up to $1,000/quarter), 1% on all else. Reports to all 3 bureaus.',
+    cardTypes: ['secured', 'credit_building'],
+    priorityTags: ['credit_building', 'cash_back'],
+    features: ['cashback_match', 'free_fico', 'automatic_reviews'],
+    annualFee: 0,
+    signupBonus: 'Unlimited Cashback Match for first year',
+    applyUrl: 'https://www.forbes.com/advisor/credit-cards/reviews/discover-it-secured/'
   }
 ];
 
-const getEligibleBanks = () => BANKS;
+const getEligibleCards = () => CARDS;
 
 // ============== CONTENT LIBRARY ==============
 const CONTENT_LIBRARY = {
   education: {
-    apy_basics: {
-      id: 'apy_basics',
-      title: 'APY Basics',
-      body: 'APY is the annual percentage yield you earn on savings. It includes compound interest, so a higher APY generally means your money grows faster over time.',
-      link: { text: 'APY guide', url: '/advisor/banking/what-is-apy/' },
+    apr_basics: {
+      id: 'apr_basics',
+      title: 'APR Basics',
+      body: 'APR (Annual Percentage Rate) is the yearly interest rate you pay on balances carried month-to-month. Pay your full balance to avoid interest charges entirely.',
+      link: { text: 'APR guide', url: '/advisor/credit-cards/what-is-apr/' },
       type: 'education'
     },
-    fdic_insurance: {
-      id: 'fdic_insurance',
-      title: 'FDIC Insurance',
-      body: 'FDIC insurance protects your deposits up to $250,000 per depositor, per bank, per ownership category. Most online banks are FDIC insured.',
-      link: { text: 'FDIC coverage', url: '/advisor/banking/fdic-insurance/' },
+    credit_score: {
+      id: 'credit_score',
+      title: 'Credit Score Impact',
+      body: 'Credit cards can help build your score when used responsibly. Keep utilization under 30%, pay on time, and avoid opening too many accounts at once.',
+      link: { text: 'Credit score tips', url: '/advisor/credit-cards/improve-credit-score/' },
       type: 'education'
     },
-    cds_explainer: {
-      id: 'cds_explainer',
-      title: 'CDs Explained',
-      body: 'A certificate of deposit (CD) locks your money for a set term in exchange for a fixed rate. Longer terms usually offer higher rates.',
-      link: { text: 'CDs guide', url: '/advisor/banking/best-cd-rates/' },
+    rewards_types: {
+      id: 'rewards_types',
+      title: 'Rewards: Points vs Cash Back vs Miles',
+      body: 'Cash back gives you money back on purchases. Points offer flexible redemption options. Miles are best for travel. Choose based on how you want to redeem rewards.',
+      link: { text: 'Rewards comparison', url: '/advisor/credit-cards/rewards-guide/' },
       type: 'education'
     },
-    checking_vs_savings: {
-      id: 'checking_vs_savings',
-      title: 'Checking vs Savings',
-      body: 'Checking accounts are for everyday spending and bill pay. Savings accounts are for earning interest on balances you do not use daily.',
-      link: { text: 'Compare accounts', url: '/advisor/banking/checking-vs-savings/' },
+    annual_fees: {
+      id: 'annual_fees',
+      title: 'Annual Fees Explained',
+      body: 'Premium cards charge annual fees but offer valuable perks like travel credits, lounge access, and higher rewards rates. Calculate if the benefits outweigh the cost.',
+      link: { text: 'Fee comparison', url: '/advisor/credit-cards/annual-fee-worth-it/' },
       type: 'education'
     },
-    atm_fees: {
-      id: 'atm_fees',
-      title: 'ATM Fees',
-      body: 'Some online banks reimburse out-of-network ATM fees, while others do not. Look for a large fee-free ATM network if you use cash often.',
-      link: { text: 'ATM fee tips', url: '/advisor/banking/avoid-atm-fees/' },
+    balance_transfer: {
+      id: 'balance_transfer',
+      title: 'Balance Transfers',
+      body: 'Balance transfer cards let you move high-interest debt to a card with 0% intro APR. Watch for transfer fees (typically 3-5%) and pay off before the intro period ends.',
+      link: { text: 'Balance transfer guide', url: '/advisor/credit-cards/balance-transfer/' },
       type: 'education'
-    }
-  },
-  fee_breakdowns: {
-    monthly_fees: {
-      id: 'monthly_fees',
-      title: 'Monthly Fees',
-      body: 'Many online banks charge no monthly maintenance fees. When they do, fees can often be waived by maintaining a balance or using direct deposit.',
-      link: { text: 'Fee-free banks', url: '/advisor/banking/no-fee-checking-accounts/' },
+    },
+    signup_bonus: {
+      id: 'signup_bonus',
+      title: 'Sign-Up Bonuses',
+      body: 'Many cards offer welcome bonuses worth $200-$1,000+ after meeting minimum spend requirements. Only apply if you can meet the spend naturally without overspending.',
+      link: { text: 'Best bonuses', url: '/advisor/credit-cards/best-signup-bonuses/' },
+      type: 'education'
+    },
+    secured_cards: {
+      id: 'secured_cards',
+      title: 'Secured Credit Cards',
+      body: 'Secured cards require a refundable deposit that becomes your credit limit. They\'re great for building or rebuilding credit, and many graduate to unsecured cards.',
+      link: { text: 'Secured cards', url: '/advisor/credit-cards/best-secured-cards/' },
       type: 'education'
     }
   }
@@ -170,11 +195,13 @@ const CONTENT_LIBRARY = {
 const findEducationContent = (topic) => {
   const normalized = topic.toLowerCase();
   const mappings = [
-    { id: 'apy_basics', keywords: ['apy', 'yield', 'interest rate'] },
-    { id: 'fdic_insurance', keywords: ['fdic', 'insurance', 'insured'] },
-    { id: 'cds_explainer', keywords: ['cd', 'certificate of deposit'] },
-    { id: 'checking_vs_savings', keywords: ['checking', 'savings', 'difference'] },
-    { id: 'atm_fees', keywords: ['atm', 'fee', 'cash withdrawal'] }
+    { id: 'apr_basics', keywords: ['apr', 'interest rate', 'interest'] },
+    { id: 'credit_score', keywords: ['credit score', 'fico', 'credit rating', 'build credit'] },
+    { id: 'rewards_types', keywords: ['rewards', 'points', 'miles', 'cash back', 'cashback'] },
+    { id: 'annual_fees', keywords: ['annual fee', 'yearly fee', 'fee worth'] },
+    { id: 'balance_transfer', keywords: ['balance transfer', 'transfer debt', '0% apr', 'pay off debt'] },
+    { id: 'signup_bonus', keywords: ['sign up bonus', 'signup bonus', 'welcome bonus', 'intro bonus'] },
+    { id: 'secured_cards', keywords: ['secured', 'deposit', 'build credit', 'bad credit', 'no credit'] }
   ];
 
   for (const mapping of mappings) {
@@ -183,43 +210,44 @@ const findEducationContent = (topic) => {
     }
   }
 
-  if (normalized.includes('fee')) {
-    return CONTENT_LIBRARY.fee_breakdowns.monthly_fees;
-  }
-
   return null;
 };
 
 // ============== INTENT CLASSIFIER ==============
-const ACCOUNT_PATTERNS = [
-  { type: 'checking', patterns: [/checking/i, /spending/i, /debit/i] },
-  { type: 'savings', patterns: [/savings/i, /save/i, /high.?yield/i, /apy/i] },
-  { type: 'money_market', patterns: [/money market/i, /\bmma\b/i] },
-  { type: 'cds', patterns: [/cd\b/i, /certificate of deposit/i, /term deposit/i] },
-  { type: 'business', patterns: [/business/i, /smb/i, /small business/i] },
-  { type: 'both', patterns: [/both/i, /checking and savings/i, /combo/i] }
+const CARD_TYPE_PATTERNS = [
+  { type: 'travel', patterns: [/travel/i, /airline/i, /hotel/i, /miles/i, /points/i, /vacation/i] },
+  { type: 'cash_back', patterns: [/cash\s*back/i, /cashback/i, /cash rewards/i, /percent back/i] },
+  { type: 'rewards', patterns: [/rewards/i, /points/i, /earn/i] },
+  { type: 'balance_transfer', patterns: [/balance transfer/i, /transfer balance/i, /pay off debt/i, /0% apr/i, /zero apr/i] },
+  { type: 'credit_building', patterns: [/build credit/i, /building credit/i, /no credit/i, /bad credit/i, /first card/i, /starter/i, /secured/i] },
+  { type: 'business', patterns: [/business/i, /small business/i, /company/i] },
+  { type: 'student', patterns: [/student/i, /college/i, /university/i] }
 ];
 
 const PRIORITY_PATTERNS = [
-  { type: 'apy', patterns: [/apy/i, /interest/i, /high.?yield/i, /rate/i] },
-  { type: 'fees', patterns: [/fee/i, /no fee/i, /free/i, /low cost/i, /cheap/i] },
-  { type: 'atm', patterns: [/atm/i, /cash/i, /withdraw/i, /fee reimbursement/i] },
-  { type: 'mobile', patterns: [/mobile/i, /app/i, /deposit/i, /check deposit/i] },
-  { type: 'support', patterns: [/support/i, /customer service/i, /phone/i, /help/i] }
+  { type: 'no_annual_fee', patterns: [/no (annual )?fee/i, /fee.?free/i, /\$0 fee/i, /zero fee/i, /without fee/i] },
+  { type: 'high_rewards', patterns: [/high(est)? reward/i, /best reward/i, /most points/i, /maximize/i, /best rate/i] },
+  { type: 'signup_bonus', patterns: [/sign.?up bonus/i, /welcome bonus/i, /intro bonus/i, /bonus offer/i] },
+  { type: 'low_interest', patterns: [/low interest/i, /low apr/i, /0% interest/i, /zero interest/i] },
+  { type: 'lounge_access', patterns: [/lounge/i, /airport lounge/i, /priority pass/i] },
+  { type: 'no_foreign_fees', patterns: [/no foreign/i, /foreign transaction/i, /international/i, /travel abroad/i] }
 ];
 
-const ACCESS_PATTERNS = [
-  { type: 'direct_deposit', patterns: [/direct deposit/i] },
-  { type: 'mobile_deposit', patterns: [/mobile check/i, /mobile deposit/i, /check deposit/i] },
-  { type: 'cash_deposit', patterns: [/cash deposit/i, /deposit cash/i, /branch/i] },
-  { type: 'transfers', patterns: [/transfer/i, /ach/i, /wire/i] }
+const SPENDING_PATTERNS = [
+  { type: 'dining', patterns: [/dining/i, /restaurant/i, /eat out/i, /food/i] },
+  { type: 'groceries', patterns: [/grocery/i, /groceries/i, /supermarket/i] },
+  { type: 'gas', patterns: [/gas/i, /fuel/i, /gas station/i] },
+  { type: 'online_shopping', patterns: [/online shop/i, /amazon/i, /e-commerce/i] },
+  { type: 'entertainment', patterns: [/entertainment/i, /streaming/i, /movies/i, /concerts/i] },
+  { type: 'everything', patterns: [/everything/i, /all purchases/i, /everyday/i, /general/i] }
 ];
 
-const BALANCE_PATTERNS = [
-  { type: 'under_1000', patterns: [/under \$?1,?000/i, /less than \$?1,?000/i] },
-  { type: '1000_10000', patterns: [/\$?1,?000.*\$?10,?000/i, /between \$?1,?000 and \$?10,?000/i] },
-  { type: '10000_plus', patterns: [/over \$?10,?000/i, /above \$?10,?000/i, /more than \$?10,?000/i] },
-  { type: 'varies', patterns: [/varies/i, /depends/i, /not sure/i] }
+const CREDIT_SCORE_PATTERNS = [
+  { type: 'excellent', patterns: [/excellent credit/i, /great credit/i, /800/i, /750\+/i] },
+  { type: 'good', patterns: [/good credit/i, /700/i, /decent credit/i] },
+  { type: 'fair', patterns: [/fair credit/i, /average credit/i, /650/i, /okay credit/i] },
+  { type: 'poor', patterns: [/poor credit/i, /bad credit/i, /low credit/i, /rebuilding/i] },
+  { type: 'none', patterns: [/no credit/i, /no history/i, /first card/i, /new to credit/i] }
 ];
 
 const EDUCATION_PATTERNS = [
@@ -227,17 +255,19 @@ const EDUCATION_PATTERNS = [
   /how (do|does|to) /i,
   /explain/i,
   /tell me about/i,
-  /learn about/i
+  /learn about/i,
+  /difference between/i
 ];
 
 const READY_PATTERNS = [
   /show me/i,
   /what do you recommend/i,
   /recommend/i,
-  /best bank/i,
-  /top banks/i,
+  /best card/i,
+  /top cards/i,
   /find me/i,
-  /what are my options/i
+  /what are my options/i,
+  /which card/i
 ];
 
 const GREETING_PATTERNS = [
@@ -289,27 +319,24 @@ const OFF_TOPIC_PATTERNS = [
   /are you (a |an )?(bot|ai|robot|human)/i
 ];
 
-const BANKING_RELATED = [
-  /bank/i,
-  /account/i,
-  /money/i,
-  /save|saving/i,
-  /check|checking/i,
-  /deposit/i,
-  /withdraw/i,
-  /interest/i,
-  /apy/i,
-  /fee/i,
-  /atm/i,
-  /online/i,
-  /cd\b/i,
-  /rate/i
+const CREDIT_CARD_RELATED = [
+  /card/i,
+  /credit/i,
+  /reward/i,
+  /points/i,
+  /miles/i,
+  /cash\s*back/i,
+  /apr/i,
+  /annual fee/i,
+  /bonus/i,
+  /travel/i,
+  /dining/i
 ];
 
 const classifyIntent = (message) => {
   const normalized = message.toLowerCase().trim();
   const readyForResults = READY_PATTERNS.some((pattern) => pattern.test(normalized));
-  const isBankingRelated = BANKING_RELATED.some((pattern) => pattern.test(normalized));
+  const isCreditCardRelated = CREDIT_CARD_RELATED.some((pattern) => pattern.test(normalized));
 
   if (GREETING_PATTERNS.some((pattern) => pattern.test(normalized))) {
     return { type: 'greeting', readyForResults: false };
@@ -339,9 +366,9 @@ const classifyIntent = (message) => {
     return { type: 'education_request', topic: message, readyForResults };
   }
 
-  for (const account of ACCOUNT_PATTERNS) {
-    if (account.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'account_signal', accountType: account.type, readyForResults };
+  for (const cardType of CARD_TYPE_PATTERNS) {
+    if (cardType.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'card_type_signal', cardType: cardType.type, readyForResults };
     }
   }
 
@@ -351,20 +378,20 @@ const classifyIntent = (message) => {
     }
   }
 
-  for (const access of ACCESS_PATTERNS) {
-    if (access.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'access_signal', access: access.type, readyForResults };
+  for (const spending of SPENDING_PATTERNS) {
+    if (spending.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'spending_signal', spending: spending.type, readyForResults };
     }
   }
 
-  for (const balance of BALANCE_PATTERNS) {
-    if (balance.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'balance_signal', balance: balance.type, readyForResults };
+  for (const credit of CREDIT_SCORE_PATTERNS) {
+    if (credit.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'credit_score_signal', creditScore: credit.type, readyForResults };
     }
   }
 
-  if (isBankingRelated) {
-    return { type: 'banking_unclear', readyForResults };
+  if (isCreditCardRelated) {
+    return { type: 'card_unclear', readyForResults };
   }
 
   if (normalized.length < 3 || !/[a-z]/i.test(normalized)) {
@@ -378,9 +405,9 @@ const extractDataFromMessage = (message) => {
   const normalized = message.toLowerCase();
   const data = {};
 
-  for (const account of ACCOUNT_PATTERNS) {
-    if (account.patterns.some((pattern) => pattern.test(normalized))) {
-      data.accountType = account.type;
+  for (const cardType of CARD_TYPE_PATTERNS) {
+    if (cardType.patterns.some((pattern) => pattern.test(normalized))) {
+      data.cardType = cardType.type;
       break;
     }
   }
@@ -392,16 +419,16 @@ const extractDataFromMessage = (message) => {
     }
   }
 
-  for (const access of ACCESS_PATTERNS) {
-    if (access.patterns.some((pattern) => pattern.test(normalized))) {
-      data.access = access.type;
+  for (const spending of SPENDING_PATTERNS) {
+    if (spending.patterns.some((pattern) => pattern.test(normalized))) {
+      data.spending = spending.type;
       break;
     }
   }
 
-  for (const balance of BALANCE_PATTERNS) {
-    if (balance.patterns.some((pattern) => pattern.test(normalized))) {
-      data.balance = balance.type;
+  for (const credit of CREDIT_SCORE_PATTERNS) {
+    if (credit.patterns.some((pattern) => pattern.test(normalized))) {
+      data.creditScore = credit.type;
       break;
     }
   }
@@ -410,116 +437,155 @@ const extractDataFromMessage = (message) => {
 };
 
 // ============== SCORING ENGINE ==============
-const PRIORITY_POINTS = 20;
-const ACCOUNT_POINTS = 10;
-const ACCESS_POINTS = 5;
-const BALANCE_POINTS = 5;
+const CARD_TYPE_POINTS = 20;
+const PRIORITY_POINTS = 15;
+const SPENDING_POINTS = 10;
+const CREDIT_SCORE_POINTS = 5;
 
 const priorityReasonMap = {
-  apy: 'Strong APY offering',
-  fees: 'Low-fee structure',
-  atm: 'ATM access and reimbursements',
-  mobile: 'Mobile-first access',
-  support: 'Strong customer support'
+  no_annual_fee: 'No annual fee',
+  high_rewards: 'Excellent rewards rates',
+  signup_bonus: 'Strong sign-up bonus',
+  low_interest: 'Low APR options',
+  lounge_access: 'Airport lounge access',
+  no_foreign_fees: 'No foreign transaction fees'
+};
+
+const spendingReasonMap = {
+  dining: 'Great for dining rewards',
+  groceries: 'Strong grocery rewards',
+  gas: 'Gas station bonuses',
+  online_shopping: 'Online shopping rewards',
+  entertainment: 'Entertainment perks',
+  everything: 'Solid flat-rate rewards'
 };
 
 const hasMinimumData = (state) => {
-  return Boolean(state.accountType && state.priority);
+  return Boolean(state.cardType && (state.priority || state.spending));
 };
 
-const matchesAccountType = (bank, accountType) => {
-  if (!accountType) return true;
-  if (accountType === 'both') {
-    return bank.accountTypes.includes('checking') && bank.accountTypes.includes('savings');
-  }
-  return bank.accountTypes.includes(accountType);
+const matchesCardType = (card, cardType) => {
+  if (!cardType) return true;
+  return card.cardTypes.includes(cardType);
 };
 
-const matchesAccess = (bank, access) => {
-  if (!access) return true;
-  return bank.accessFeatures.includes(access);
-};
-
-const matchesPriority = (bank, priority) => {
+const matchesPriority = (card, priority) => {
   if (!priority) return true;
-  return bank.priorityTags.includes(priority);
+  
+  if (priority === 'no_annual_fee') {
+    return card.annualFee === 0;
+  }
+  if (priority === 'lounge_access') {
+    return card.features.includes('lounge_access');
+  }
+  if (priority === 'no_foreign_fees') {
+    return card.features.includes('no_foreign_fees');
+  }
+  
+  return card.priorityTags.includes(priority);
 };
 
-const getMatchReasons = (bank, state) => {
+const matchesSpending = (card, spending) => {
+  if (!spending) return true;
+  if (spending === 'everything') {
+    return card.priorityTags.includes('simplicity') || card.cardTypes.includes('cash_back');
+  }
+  return card.priorityTags.includes(spending);
+};
+
+const matchesCreditScore = (card, creditScore) => {
+  if (!creditScore) return true;
+  
+  if (creditScore === 'poor' || creditScore === 'none') {
+    return card.cardTypes.includes('secured') || card.cardTypes.includes('credit_building');
+  }
+  
+  if (card.cardTypes.includes('premium') || card.annualFee > 200) {
+    return creditScore === 'excellent' || creditScore === 'good';
+  }
+  
+  return true;
+};
+
+const getMatchReasons = (card, state) => {
   const reasons = [];
 
-  if (state.priority && matchesPriority(bank, state.priority)) {
-    reasons.push(priorityReasonMap[state.priority]);
-  }
-
-  if (state.accountType && matchesAccountType(bank, state.accountType)) {
-    if (state.accountType === 'checking') {
-      reasons.push('Strong checking features');
-    } else if (state.accountType === 'savings') {
-      reasons.push('Competitive savings options');
-    } else if (state.accountType === 'cds') {
-      reasons.push('Solid CD offerings');
-    } else if (state.accountType === 'business') {
-      reasons.push('Business-friendly accounts');
-    } else if (state.accountType === 'both') {
-      reasons.push('Balanced checking and savings');
+  if (state.cardType && matchesCardType(card, state.cardType)) {
+    if (state.cardType === 'travel') {
+      reasons.push('Excellent for travel rewards');
+    } else if (state.cardType === 'cash_back') {
+      reasons.push('Strong cash back earning');
+    } else if (state.cardType === 'balance_transfer') {
+      reasons.push('Great for paying down debt');
+    } else if (state.cardType === 'credit_building') {
+      reasons.push('Helps build credit history');
     }
   }
 
-  if (state.access && matchesAccess(bank, state.access)) {
-    if (state.access === 'mobile_deposit') {
-      reasons.push('Mobile check deposit available');
-    } else if (state.access === 'cash_deposit') {
-      reasons.push('Cash deposit options');
-    } else if (state.access === 'direct_deposit') {
-      reasons.push('Direct deposit friendly');
-    } else if (state.access === 'transfers') {
-      reasons.push('Flexible transfer options');
+  if (state.priority && priorityReasonMap[state.priority]) {
+    if (matchesPriority(card, state.priority)) {
+      reasons.push(priorityReasonMap[state.priority]);
     }
+  }
+
+  if (state.spending && spendingReasonMap[state.spending]) {
+    if (matchesSpending(card, state.spending)) {
+      reasons.push(spendingReasonMap[state.spending]);
+    }
+  }
+
+  if (card.annualFee === 0) {
+    reasons.push('$0 annual fee');
+  } else {
+    reasons.push(`$${card.annualFee} annual fee`);
   }
 
   if (reasons.length === 0) {
-    reasons.push(bank.category);
+    reasons.push(card.category);
   }
 
   return reasons.slice(0, 3);
 };
 
-const scoreBank = (bank, state) => {
-  const baseline = 60 * (bank.rating / 5);
-  let accountPoints = 0;
+const scoreCard = (card, state) => {
+  const baseline = 60 * (card.rating / 5);
+  let cardTypePoints = 0;
   let priorityPoints = 0;
-  let accessPoints = 0;
-  let balancePoints = 0;
+  let spendingPoints = 0;
+  let creditPoints = 0;
 
-  if (state.accountType && matchesAccountType(bank, state.accountType)) {
-    accountPoints = ACCOUNT_POINTS;
+  if (state.cardType && matchesCardType(card, state.cardType)) {
+    cardTypePoints = CARD_TYPE_POINTS;
   }
 
   if (state.priority) {
-    priorityPoints = matchesPriority(bank, state.priority) ? PRIORITY_POINTS : PRIORITY_POINTS * 0.3;
+    priorityPoints = matchesPriority(card, state.priority) ? PRIORITY_POINTS : PRIORITY_POINTS * 0.3;
   } else {
     priorityPoints = PRIORITY_POINTS * 0.5;
   }
 
-  if (state.access) {
-    accessPoints = matchesAccess(bank, state.access) ? ACCESS_POINTS : 0;
+  if (state.spending) {
+    spendingPoints = matchesSpending(card, state.spending) ? SPENDING_POINTS : SPENDING_POINTS * 0.3;
   } else {
-    accessPoints = ACCESS_POINTS * 0.5;
+    spendingPoints = SPENDING_POINTS * 0.5;
   }
 
-  if (state.balance) {
-    balancePoints = BALANCE_POINTS * 0.5;
+  if (state.creditScore) {
+    creditPoints = matchesCreditScore(card, state.creditScore) ? CREDIT_SCORE_POINTS : -10;
   }
 
-  return baseline + accountPoints + priorityPoints + accessPoints + balancePoints;
+  return baseline + cardTypePoints + priorityPoints + spendingPoints + creditPoints;
 };
 
 const runScoring = (state) => {
   let disclosureNeeded = false;
-  const candidates = getEligibleBanks();
+  const candidates = getEligibleCards();
 
-  let filtered = candidates.filter((bank) => matchesAccountType(bank, state.accountType));
+  let filtered = candidates.filter((card) => matchesCardType(card, state.cardType));
+
+  if (state.creditScore) {
+    filtered = filtered.filter((card) => matchesCreditScore(card, state.creditScore));
+  }
 
   if (filtered.length < 3) {
     filtered = candidates;
@@ -527,17 +593,19 @@ const runScoring = (state) => {
   }
 
   const results = filtered
-    .map((bank) => ({
-      bank: {
-        id: bank.id,
-        name: bank.name,
-        rating: bank.rating,
-        category: bank.category,
-        description: bank.description,
-        applyUrl: bank.applyUrl
+    .map((card) => ({
+      card: {
+        id: card.id,
+        name: card.name,
+        rating: card.rating,
+        category: card.category,
+        description: card.description,
+        annualFee: card.annualFee,
+        signupBonus: card.signupBonus,
+        applyUrl: card.applyUrl
       },
-      finalScore: scoreBank(bank, state),
-      matchReasons: getMatchReasons(bank, state)
+      finalScore: scoreCard(card, state),
+      matchReasons: getMatchReasons(card, state)
     }))
     .sort((a, b) => b.finalScore - a.finalScore)
     .slice(0, 3);
@@ -547,57 +615,63 @@ const runScoring = (state) => {
 
 // ============== CHAT LOGIC ==============
 const getInitialState = () => ({
-  accountType: null,
+  cardType: null,
   priority: null,
-  access: null,
-  balance: null,
+  spending: null,
+  creditScore: null,
   messagesCount: 0
 });
 
 const quickReplies = {
-  accountType: [
-    { text: 'Checking account', action: 'set_account_checking' },
-    { text: 'Savings account', action: 'set_account_savings' },
-    { text: 'Both checking and savings', action: 'set_account_both' },
-    { text: 'CDs for saving', action: 'set_account_cds' }
+  cardType: [
+    { text: 'Travel rewards', action: 'set_card_travel' },
+    { text: 'Cash back', action: 'set_card_cash_back' },
+    { text: 'Balance transfer', action: 'set_card_balance_transfer' },
+    { text: 'Building credit', action: 'set_card_credit_building' }
   ],
   priority: [
-    { text: 'Highest APY rates', action: 'set_priority_apy' },
-    { text: 'No monthly fees', action: 'set_priority_fees' },
-    { text: 'Good ATM access', action: 'set_priority_atm' },
-    { text: 'Great mobile app', action: 'set_priority_mobile' },
-    { text: 'Strong customer support', action: 'set_priority_support' }
+    { text: 'No annual fee', action: 'set_priority_no_fee' },
+    { text: 'Best sign-up bonus', action: 'set_priority_bonus' },
+    { text: 'Highest rewards rate', action: 'set_priority_rewards' },
+    { text: 'Low interest rate', action: 'set_priority_low_apr' }
   ],
-  access: [
-    { text: 'Direct deposit my paycheck', action: 'set_access_direct_deposit' },
-    { text: 'Deposit checks with my phone', action: 'set_access_mobile_deposit' },
-    { text: 'Deposit cash sometimes', action: 'set_access_cash_deposit' },
-    { text: 'Just transfers, no deposits', action: 'set_access_transfers' }
+  spending: [
+    { text: 'Dining & restaurants', action: 'set_spending_dining' },
+    { text: 'Groceries', action: 'set_spending_groceries' },
+    { text: 'Gas & commuting', action: 'set_spending_gas' },
+    { text: 'A bit of everything', action: 'set_spending_everything' }
   ],
   afterResults: [
     { text: 'Why is this the best match?', action: 'explain_match' },
-    { text: 'What about fees?', action: 'ask_fees' },
+    { text: 'Tell me about the fees', action: 'ask_fees' },
     { text: 'Start over', action: 'restart' }
   ]
 };
 
 const actionToState = (action) => {
   switch (action) {
-    case 'set_account_checking': return { accountType: 'checking' };
-    case 'set_account_savings': return { accountType: 'savings' };
-    case 'set_account_both': return { accountType: 'both' };
-    case 'set_account_cds': return { accountType: 'cds' };
-    case 'set_account_money_market': return { accountType: 'money_market' };
-    case 'set_account_business': return { accountType: 'business' };
-    case 'set_priority_apy': return { priority: 'apy' };
-    case 'set_priority_fees': return { priority: 'fees' };
-    case 'set_priority_atm': return { priority: 'atm' };
-    case 'set_priority_mobile': return { priority: 'mobile' };
-    case 'set_priority_support': return { priority: 'support' };
-    case 'set_access_direct_deposit': return { access: 'direct_deposit' };
-    case 'set_access_mobile_deposit': return { access: 'mobile_deposit' };
-    case 'set_access_cash_deposit': return { access: 'cash_deposit' };
-    case 'set_access_transfers': return { access: 'transfers' };
+    case 'set_card_travel': return { cardType: 'travel' };
+    case 'set_card_cash_back': return { cardType: 'cash_back' };
+    case 'set_card_balance_transfer': return { cardType: 'balance_transfer' };
+    case 'set_card_credit_building': return { cardType: 'credit_building' };
+    case 'set_card_rewards': return { cardType: 'rewards' };
+    case 'set_card_business': return { cardType: 'business' };
+    case 'set_priority_no_fee': return { priority: 'no_annual_fee' };
+    case 'set_priority_bonus': return { priority: 'signup_bonus' };
+    case 'set_priority_rewards': return { priority: 'high_rewards' };
+    case 'set_priority_low_apr': return { priority: 'low_interest' };
+    case 'set_priority_lounge': return { priority: 'lounge_access' };
+    case 'set_priority_no_foreign': return { priority: 'no_foreign_fees' };
+    case 'set_spending_dining': return { spending: 'dining' };
+    case 'set_spending_groceries': return { spending: 'groceries' };
+    case 'set_spending_gas': return { spending: 'gas' };
+    case 'set_spending_everything': return { spending: 'everything' };
+    case 'set_spending_entertainment': return { spending: 'entertainment' };
+    case 'set_credit_excellent': return { creditScore: 'excellent' };
+    case 'set_credit_good': return { creditScore: 'good' };
+    case 'set_credit_fair': return { creditScore: 'fair' };
+    case 'set_credit_poor': return { creditScore: 'poor' };
+    case 'set_credit_none': return { creditScore: 'none' };
     default: return {};
   }
 };
@@ -605,27 +679,35 @@ const actionToState = (action) => {
 const buildResultsResponse = (state) => {
   const { results, disclosureNeeded } = runScoring(state);
   
-  let intro = "Great choices! ";
-  if (state.accountType && state.priority) {
-    const accountName = state.accountType === 'both' ? 'checking and savings' : state.accountType;
+  let intro = "Great! ";
+  if (state.cardType && state.priority) {
+    const cardName = {
+      travel: 'travel rewards',
+      cash_back: 'cash back',
+      balance_transfer: 'balance transfer',
+      credit_building: 'credit building',
+      rewards: 'rewards'
+    }[state.cardType] || state.cardType;
+    
     const priorityName = {
-      apy: 'high APY',
-      fees: 'low fees',
-      atm: 'ATM access',
-      mobile: 'mobile features',
-      support: 'customer support'
+      no_annual_fee: 'no annual fee',
+      signup_bonus: 'great sign-up bonuses',
+      high_rewards: 'high rewards rates',
+      low_interest: 'low interest rates',
+      lounge_access: 'lounge access',
+      no_foreign_fees: 'no foreign fees'
     }[state.priority] || state.priority;
     
-    intro = `Based on your interest in ${accountName} with ${priorityName}, I found some excellent options for you. `;
+    intro = `Based on your interest in ${cardName} cards with ${priorityName}, I found some excellent options. `;
   }
   
-  const topBank = results[0]?.bank?.name || 'our top pick';
-  intro += `${topBank} stands out as the best match. Here's why:`;
+  const topCard = results[0]?.card?.name || 'our top pick';
+  intro += `The ${topCard} stands out as the best match. Here's why:`;
 
   return {
     reply: intro,
     resultsCard: {
-      title: 'YOUR TOP MATCHES',
+      title: 'YOUR TOP CARD MATCHES',
       results,
       disclosureNeeded
     },
@@ -634,40 +716,41 @@ const buildResultsResponse = (state) => {
 };
 
 const askNextQuestion = (state) => {
-  if (!state.accountType) {
+  if (!state.cardType) {
     return {
-      reply: "Let's find you the perfect online bank! First, what type of account do you need?",
-      options: quickReplies.accountType
+      reply: "Let's find your perfect credit card! First, what type of card are you looking for?",
+      options: quickReplies.cardType
     };
   }
 
   if (!state.priority) {
-    const accountAck = {
-      checking: "A checking account is great for everyday spending. ",
-      savings: "Smart move focusing on savings! ",
-      both: "Having both checking and savings in one place is super convenient. ",
-      cds: "CDs are a solid choice for earning guaranteed returns. ",
-      money_market: "Money market accounts offer a nice balance of access and rates. "
-    }[state.accountType] || "";
+    const cardAck = {
+      travel: "Travel cards are great for earning flights, hotels and more! ",
+      cash_back: "Cash back is simple and valuable — money back on every purchase. ",
+      balance_transfer: "Smart move — paying off debt faster saves you money. ",
+      credit_building: "Building credit now sets you up for better rates in the future. ",
+      rewards: "Rewards cards offer great flexibility in how you redeem. "
+    }[state.cardType] || "";
     
     return {
-      reply: `${accountAck}Now, what's most important to you when choosing a bank?`,
+      reply: `${cardAck}What's most important to you in a credit card?`,
       options: quickReplies.priority
     };
   }
 
-  if (!state.access) {
+  if (!state.spending) {
     const priorityAck = {
-      apy: "Finding the best rates is definitely worth it — even small differences add up! ",
-      fees: "Avoiding fees is smart — why pay for something you can get free? ",
-      atm: "Good ATM access makes a big difference for cash needs. ",
-      mobile: "A great mobile app makes banking so much easier. ",
-      support: "Having reliable support is really valuable when you need help. "
+      no_annual_fee: "No annual fee is smart — why pay for a card you can get free? ",
+      signup_bonus: "Sign-up bonuses can be worth hundreds of dollars! ",
+      high_rewards: "Maximizing rewards puts more money back in your pocket. ",
+      low_interest: "A low APR is valuable if you ever carry a balance. ",
+      lounge_access: "Airport lounges make travel so much more comfortable! ",
+      no_foreign_fees: "Perfect for international travel or online shopping abroad. "
     }[state.priority] || "";
     
     return {
-      reply: `${priorityAck}One more thing — how do you typically deposit money?`,
-      options: quickReplies.access
+      reply: `${priorityAck}One more thing — where do you spend the most money?`,
+      options: quickReplies.spending
     };
   }
 
@@ -677,40 +760,37 @@ const askNextQuestion = (state) => {
 const handleChat = ({ state, message, action }) => {
   let updatedState = { ...state };
 
-  // Handle init action
   if (action === 'init' && state.messagesCount === 0) {
     return {
-      reply: "Hi there! I'm here to help you find the perfect online bank. Whether you're looking for high APY, no fees, or great mobile features — I'll match you with the best options. What brings you here today?",
+      reply: "Hi there! I'm here to help you find the perfect credit card. Whether you want travel rewards, cash back, or to build your credit — I'll match you with the best options. What are you looking for?",
       options: [
-        { text: "I'm comparing online banks", action: 'generic_query' },
-        { text: 'I want to earn more interest', action: 'set_priority_apy' },
-        { text: 'I hate paying bank fees', action: 'set_priority_fees' },
-        { text: 'I need a checking account', action: 'set_account_checking' }
+        { text: "I'm comparing credit cards", action: 'generic_query' },
+        { text: 'I want travel rewards', action: 'set_card_travel' },
+        { text: 'I want cash back', action: 'set_card_cash_back' },
+        { text: 'I need to build credit', action: 'set_card_credit_building' }
       ],
       updatedState: { ...updatedState }
     };
   }
 
-  // Handle restart action
   if (action === 'restart') {
     updatedState = getInitialState();
     return {
-      reply: "No problem, let's start fresh! What type of account are you looking for this time?",
-      options: quickReplies.accountType,
+      reply: "No problem, let's start fresh! What type of credit card are you looking for?",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle explain_match action
   if (action === 'explain_match') {
     const { results } = runScoring(updatedState);
-    const topBank = results[0];
-    if (topBank) {
+    const topCard = results[0];
+    if (topCard) {
       return {
-        reply: `${topBank.bank.name} came out on top because it excels in the areas you care about most. ${topBank.matchReasons.join('. ')}. Their ${topBank.bank.category.toLowerCase()} makes them especially strong for your needs.`,
+        reply: `${topCard.card.name} came out on top because it excels in what you care about. ${topCard.matchReasons.join('. ')}. ${topCard.card.signupBonus ? `Plus, you can earn ${topCard.card.signupBonus}.` : ''}`,
         options: [
           { text: 'What about the #2 pick?', action: 'explain_second' },
-          { text: 'Tell me about fees', action: 'ask_fees' },
+          { text: 'Compare annual fees', action: 'ask_fees' },
           { text: 'Start over', action: 'restart' }
         ],
         updatedState
@@ -718,10 +798,14 @@ const handleChat = ({ state, message, action }) => {
     }
   }
 
-  // Handle ask_fees action
   if (action === 'ask_fees') {
+    const { results } = runScoring(updatedState);
+    const feeInfo = results.map(r => 
+      `${r.card.name}: $${r.card.annualFee}/year`
+    ).join('. ');
+    
     return {
-      reply: "Great question! Most online banks have eliminated monthly maintenance fees — that's one of their biggest advantages over traditional banks. The banks I recommended all have either no monthly fees or easy ways to waive them. ATM fees vary more, so if you use cash often, look for banks with large fee-free ATM networks or ATM fee reimbursements.",
+      reply: `Here's the annual fee breakdown: ${feeInfo}. Remember, cards with annual fees often provide enough value in rewards and perks to offset the cost — calculate based on your spending.`,
       options: [
         { text: 'Show me the results again', action: 'show_results' },
         { text: 'Start over', action: 'restart' }
@@ -730,30 +814,27 @@ const handleChat = ({ state, message, action }) => {
     };
   }
 
-  // Handle explain_process action
   if (action === 'explain_process') {
     return {
-      reply: "Here's how I work: I ask a few quick questions about what you're looking for — the type of account, what features matter most, and how you'll use it. Then I match you with the best online banks from Forbes Advisor's rankings. It only takes a minute! Ready to try?",
-      options: quickReplies.accountType,
+      reply: "Here's how I work: I ask a few quick questions about what you're looking for — the type of rewards, what features matter most, and where you spend. Then I match you with the best credit cards from Forbes Advisor's rankings. Ready to try?",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle show_popular action
   if (action === 'show_popular') {
     const popularState = { 
       ...updatedState, 
-      accountType: updatedState.accountType || 'both',
-      priority: updatedState.priority || 'apy'
+      cardType: updatedState.cardType || 'cash_back',
+      priority: updatedState.priority || 'no_annual_fee'
     };
     return { 
       ...buildResultsResponse(popularState), 
-      reply: "Here are some of the most popular online banks right now, known for great rates and low fees:",
+      reply: "Here are some of the most popular credit cards right now, loved for their rewards and low fees:",
       updatedState: popularState 
     };
   }
 
-  // Handle show_results action
   if (action === 'show_results') {
     if (hasMinimumData(updatedState)) {
       return { ...buildResultsResponse(updatedState), updatedState };
@@ -761,7 +842,6 @@ const handleChat = ({ state, message, action }) => {
     return { ...askNextQuestion(updatedState), updatedState };
   }
 
-  // Apply data from quick reply action
   let actionAppliedData = false;
   if (action && action !== 'generic_query') {
     const dataFromAction = actionToState(action);
@@ -771,14 +851,12 @@ const handleChat = ({ state, message, action }) => {
     }
   }
 
-  // Extract data from free-text message
   if (message) {
     const extracted = extractDataFromMessage(message);
     updatedState = { ...updatedState, ...extracted };
     updatedState.messagesCount += 1;
   }
 
-  // If action applied data, move to next question
   if (actionAppliedData) {
     if (hasMinimumData(updatedState)) {
       return { ...buildResultsResponse(updatedState), updatedState };
@@ -786,55 +864,49 @@ const handleChat = ({ state, message, action }) => {
     return { ...askNextQuestion(updatedState), updatedState };
   }
 
-  // Classify intent from message
   const intent = message ? classifyIntent(message) : { type: 'generic_query', readyForResults: false };
 
-  // Handle ready for results
   if (intent.readyForResults && hasMinimumData(updatedState)) {
     return { ...buildResultsResponse(updatedState), updatedState };
   }
 
-  // Handle greetings
   if (intent.type === 'greeting') {
     return {
-      reply: "Hey there! I'm here to help you find the best online bank. Let's get started — what type of account are you looking for?",
-      options: quickReplies.accountType,
+      reply: "Hey there! I'm here to help you find the best credit card. Let's get started — what type of card interests you?",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle thanks
   if (intent.type === 'thanks') {
     const hasResults = hasMinimumData(updatedState);
     return {
       reply: hasResults 
-        ? "You're welcome! Feel free to ask if you have more questions about these banks, or start over if you want to explore different options."
-        : "Happy to help! Let's keep going — what type of account interests you?",
-      options: hasResults ? quickReplies.afterResults : quickReplies.accountType,
+        ? "You're welcome! Feel free to ask if you have more questions about these cards, or start over if you want to explore different options."
+        : "Happy to help! Let's keep going — what type of credit card interests you?",
+      options: hasResults ? quickReplies.afterResults : quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle confusion
   if (intent.type === 'confused') {
-    const contextHelp = !updatedState.accountType 
-      ? "No worries! I'm helping you find an online bank. Start by telling me what type of account you need — checking for everyday spending, savings for earning interest, or both?"
+    const contextHelp = !updatedState.cardType 
+      ? "No worries! I'm helping you find a credit card. Start by telling me what type you need — travel rewards for flights and hotels, cash back for simple savings, or maybe a card to build credit?"
       : !updatedState.priority
-        ? "Let me clarify — I'm trying to understand what's most important to you in a bank. Is it earning the highest interest? Avoiding fees? Or maybe having lots of ATM access?"
-        : "I'm finding you the best online banks based on your preferences. Just one more question — how do you usually put money into your account?";
+        ? "Let me clarify — I'm trying to understand what's most important to you. Is it avoiding annual fees? Getting a big sign-up bonus? Or earning the highest rewards rate?"
+        : "I'm finding you the best credit cards based on your preferences. Last question — where do you spend most of your money?";
     
     return {
       reply: contextHelp,
-      options: !updatedState.accountType 
-        ? quickReplies.accountType 
+      options: !updatedState.cardType 
+        ? quickReplies.cardType 
         : !updatedState.priority 
           ? quickReplies.priority 
-          : quickReplies.access,
+          : quickReplies.spending,
       updatedState
     };
   }
 
-  // Handle affirmative responses
   if (intent.type === 'affirmative') {
     if (hasMinimumData(updatedState)) {
       return { ...buildResultsResponse(updatedState), updatedState };
@@ -846,57 +918,52 @@ const handleChat = ({ state, message, action }) => {
     };
   }
 
-  // Handle negative responses
   if (intent.type === 'negative') {
     return {
       reply: "No problem! Would you like to start over with different preferences, or is there something specific I can help clarify?",
       options: [
         { text: 'Start over', action: 'restart' },
         { text: 'Explain how this works', action: 'explain_process' },
-        { text: 'Just show me popular banks', action: 'show_popular' }
+        { text: 'Just show me popular cards', action: 'show_popular' }
       ],
       updatedState
     };
   }
 
-  // Handle off-topic
   if (intent.type === 'off_topic') {
     return {
-      reply: "I'm specifically designed to help you find the best online bank! I can compare rates, fees, and features across top banks. Want me to help you find a great account?",
-      options: quickReplies.accountType,
+      reply: "I'm specifically designed to help you find the best credit card! I can compare rewards, fees, and perks across top cards. Want me to help you find a great match?",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle gibberish
   if (intent.type === 'gibberish') {
     return {
-      reply: "I didn't quite catch that. Try telling me what type of bank account you're looking for, or just tap one of the options below!",
-      options: quickReplies.accountType,
+      reply: "I didn't quite catch that. Try telling me what type of credit card you're looking for, or just tap one of the options below!",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle unrecognized but potentially on-topic
-  if (intent.type === 'unrecognized' || intent.type === 'banking_unclear') {
-    const nudge = !updatedState.accountType
-      ? "I want to make sure I find the right banks for you. Are you looking for a checking account, savings account, or both?"
+  if (intent.type === 'unrecognized' || intent.type === 'card_unclear') {
+    const nudge = !updatedState.cardType
+      ? "I want to make sure I find the right card for you. Are you looking for travel rewards, cash back, or something else?"
       : !updatedState.priority
-        ? "Got it! To narrow down the best options, what matters most — high interest rates, low fees, or something else?"
-        : "Thanks! One more thing — how do you plan to deposit money into your account?";
+        ? "Got it! To narrow down the best options, what matters most — no annual fee, best rewards, or a great sign-up bonus?"
+        : "Thanks! One more thing — where do you typically spend the most?";
     
     return {
       reply: nudge,
-      options: !updatedState.accountType 
-        ? quickReplies.accountType 
+      options: !updatedState.cardType 
+        ? quickReplies.cardType 
         : !updatedState.priority 
           ? quickReplies.priority 
-          : quickReplies.access,
+          : quickReplies.spending,
       updatedState
     };
   }
 
-  // Handle education requests
   if (intent.type === 'education_request') {
     const content = findEducationContent(intent.topic);
     if (content) {
@@ -904,64 +971,59 @@ const handleChat = ({ state, message, action }) => {
         reply: "Good question! Here's what you need to know:",
         contentCard: content,
         options: [
-          { text: 'Now help me find a bank', action: 'show_results' },
+          { text: 'Now help me find a card', action: 'show_results' },
           { text: 'I have another question', action: 'generic_query' }
         ],
         updatedState
       };
     }
     return {
-      reply: "That's a great question! While I don't have specific info on that, I can definitely help you compare online banks. What type of account are you interested in?",
-      options: quickReplies.accountType,
+      reply: "That's a great question! While I don't have specific info on that, I can definitely help you compare credit cards. What type are you interested in?",
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Handle specific intent signals from messages
-  if (intent.type === 'priority_signal' && !updatedState.accountType) {
-    const priorityAck = {
-      apy: "Earning more on your money is definitely a smart priority! ",
-      fees: "I'm with you — bank fees are the worst. ",
-      atm: "ATM access is important for many people. ",
-      mobile: "A good mobile experience makes banking so much easier. ",
-      support: "Having great support when you need it is valuable. "
-    }[updatedState.priority] || "";
-    
+  if (intent.type === 'card_type_signal' && !updatedState.priority) {
     return {
-      reply: `${priorityAck}To find your best match, what type of account do you need?`,
-      options: quickReplies.accountType,
-      updatedState
-    };
-  }
-
-  if (intent.type === 'account_signal' && !updatedState.priority) {
-    return {
-      reply: "Got it! Now, what matters most to you when choosing a bank?",
+      reply: "Got it! Now, what's most important to you in a credit card?",
       options: quickReplies.priority,
       updatedState
     };
   }
 
-  if (intent.type === 'access_signal' && !updatedState.accountType) {
+  if (intent.type === 'priority_signal' && !updatedState.cardType) {
+    const priorityAck = {
+      no_annual_fee: "No annual fee is definitely smart! ",
+      signup_bonus: "Sign-up bonuses can be really valuable! ",
+      high_rewards: "Maximizing rewards is a great goal! ",
+      low_interest: "Low interest is important if you might carry a balance. "
+    }[updatedState.priority] || "";
+    
     return {
-      reply: "That's helpful to know! What type of account are you looking for?",
-      options: quickReplies.accountType,
+      reply: `${priorityAck}To find your best match, what type of card do you need?`,
+      options: quickReplies.cardType,
       updatedState
     };
   }
 
-  // Check if we have enough data to show results
+  if (intent.type === 'spending_signal' && !updatedState.cardType) {
+    return {
+      reply: "That's helpful to know! What type of credit card are you looking for?",
+      options: quickReplies.cardType,
+      updatedState
+    };
+  }
+
   if (hasMinimumData(updatedState) && updatedState.messagesCount >= 3) {
     return { ...buildResultsResponse(updatedState), updatedState };
   }
 
-  // Default: ask next question in the flow
   return { ...askNextQuestion(updatedState), updatedState };
 };
 
 // ============== VERCEL HANDLER ==============
 export default function handler(req, res) {
-  // Handle CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -976,7 +1038,6 @@ export default function handler(req, res) {
 
   const { state, message, action } = req.body || {};
 
-  // Use provided state or initialize fresh
   const currentState = state || getInitialState();
   
   const { reply, contentCard, options, resultsCard, updatedState } = handleChat({
@@ -985,7 +1046,6 @@ export default function handler(req, res) {
     action
   });
 
-  // Return updated state to client - server stores nothing
   res.status(200).json({
     reply,
     contentCard,

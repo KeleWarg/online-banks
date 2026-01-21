@@ -1,47 +1,52 @@
 export const CONTENT_LIBRARY = {
   education: {
-    apy_basics: {
-      id: 'apy_basics',
-      title: 'APY Basics',
-      body: 'APY is the annual percentage yield you earn on savings. It includes compound interest, so a higher APY generally means your money grows faster over time.',
-      link: { text: 'APY guide', url: '/advisor/banking/what-is-apy/' },
+    apr_basics: {
+      id: 'apr_basics',
+      title: 'APR Basics',
+      body: 'APR (Annual Percentage Rate) is the yearly interest rate you pay on balances carried month-to-month. Pay your full balance to avoid interest charges entirely.',
+      link: { text: 'APR guide', url: '/advisor/credit-cards/what-is-apr/' },
       type: 'education'
     },
-    fdic_insurance: {
-      id: 'fdic_insurance',
-      title: 'FDIC Insurance',
-      body: 'FDIC insurance protects your deposits up to $250,000 per depositor, per bank, per ownership category. Most online banks are FDIC insured.',
-      link: { text: 'FDIC coverage', url: '/advisor/banking/fdic-insurance/' },
+    credit_score: {
+      id: 'credit_score',
+      title: 'Credit Score Impact',
+      body: 'Credit cards can help build your score when used responsibly. Keep utilization under 30%, pay on time, and avoid opening too many accounts at once.',
+      link: { text: 'Credit score tips', url: '/advisor/credit-cards/improve-credit-score/' },
       type: 'education'
     },
-    cds_explainer: {
-      id: 'cds_explainer',
-      title: 'CDs Explained',
-      body: 'A certificate of deposit (CD) locks your money for a set term in exchange for a fixed rate. Longer terms usually offer higher rates.',
-      link: { text: 'CDs guide', url: '/advisor/banking/best-cd-rates/' },
+    rewards_types: {
+      id: 'rewards_types',
+      title: 'Rewards: Points vs Cash Back vs Miles',
+      body: 'Cash back gives you money back on purchases. Points offer flexible redemption options. Miles are best for travel. Choose based on how you want to redeem rewards.',
+      link: { text: 'Rewards comparison', url: '/advisor/credit-cards/rewards-guide/' },
       type: 'education'
     },
-    checking_vs_savings: {
-      id: 'checking_vs_savings',
-      title: 'Checking vs Savings',
-      body: 'Checking accounts are for everyday spending and bill pay. Savings accounts are for earning interest on balances you do not use daily.',
-      link: { text: 'Compare accounts', url: '/advisor/banking/checking-vs-savings/' },
+    annual_fees: {
+      id: 'annual_fees',
+      title: 'Annual Fees Explained',
+      body: 'Premium cards charge annual fees but offer valuable perks like travel credits, lounge access, and higher rewards rates. Calculate if the benefits outweigh the cost.',
+      link: { text: 'Fee comparison', url: '/advisor/credit-cards/annual-fee-worth-it/' },
       type: 'education'
     },
-    atm_fees: {
-      id: 'atm_fees',
-      title: 'ATM Fees',
-      body: 'Some online banks reimburse out-of-network ATM fees, while others do not. Look for a large fee-free ATM network if you use cash often.',
-      link: { text: 'ATM fee tips', url: '/advisor/banking/avoid-atm-fees/' },
+    balance_transfer: {
+      id: 'balance_transfer',
+      title: 'Balance Transfers',
+      body: 'Balance transfer cards let you move high-interest debt to a card with 0% intro APR. Watch for transfer fees (typically 3-5%) and pay off before the intro period ends.',
+      link: { text: 'Balance transfer guide', url: '/advisor/credit-cards/balance-transfer/' },
       type: 'education'
-    }
-  },
-  fee_breakdowns: {
-    monthly_fees: {
-      id: 'monthly_fees',
-      title: 'Monthly Fees',
-      body: 'Many online banks charge no monthly maintenance fees. When they do, fees can often be waived by maintaining a balance or using direct deposit.',
-      link: { text: 'Fee-free banks', url: '/advisor/banking/no-fee-checking-accounts/' },
+    },
+    signup_bonus: {
+      id: 'signup_bonus',
+      title: 'Sign-Up Bonuses',
+      body: 'Many cards offer welcome bonuses worth $200-$1,000+ after meeting minimum spend requirements. Only apply if you can meet the spend naturally without overspending.',
+      link: { text: 'Best bonuses', url: '/advisor/credit-cards/best-signup-bonuses/' },
+      type: 'education'
+    },
+    secured_cards: {
+      id: 'secured_cards',
+      title: 'Secured Credit Cards',
+      body: 'Secured cards require a refundable deposit that becomes your credit limit. They\'re great for building or rebuilding credit, and many graduate to unsecured cards.',
+      link: { text: 'Secured cards', url: '/advisor/credit-cards/best-secured-cards/' },
       type: 'education'
     }
   }
@@ -50,21 +55,19 @@ export const CONTENT_LIBRARY = {
 export const findEducationContent = (topic) => {
   const normalized = topic.toLowerCase();
   const mappings = [
-    { id: 'apy_basics', keywords: ['apy', 'yield', 'interest rate'] },
-    { id: 'fdic_insurance', keywords: ['fdic', 'insurance', 'insured'] },
-    { id: 'cds_explainer', keywords: ['cd', 'certificate of deposit'] },
-    { id: 'checking_vs_savings', keywords: ['checking', 'savings', 'difference'] },
-    { id: 'atm_fees', keywords: ['atm', 'fee', 'cash withdrawal'] }
+    { id: 'apr_basics', keywords: ['apr', 'interest rate', 'interest'] },
+    { id: 'credit_score', keywords: ['credit score', 'fico', 'credit rating', 'build credit'] },
+    { id: 'rewards_types', keywords: ['rewards', 'points', 'miles', 'cash back', 'cashback'] },
+    { id: 'annual_fees', keywords: ['annual fee', 'yearly fee', 'fee worth'] },
+    { id: 'balance_transfer', keywords: ['balance transfer', 'transfer debt', '0% apr', 'pay off debt'] },
+    { id: 'signup_bonus', keywords: ['sign up bonus', 'signup bonus', 'welcome bonus', 'intro bonus'] },
+    { id: 'secured_cards', keywords: ['secured', 'deposit', 'build credit', 'bad credit', 'no credit'] }
   ];
 
   for (const mapping of mappings) {
     if (mapping.keywords.some((keyword) => normalized.includes(keyword))) {
       return CONTENT_LIBRARY.education[mapping.id];
     }
-  }
-
-  if (normalized.includes('fee')) {
-    return CONTENT_LIBRARY.fee_breakdowns.monthly_fees;
   }
 
   return null;

@@ -11,13 +11,15 @@ export interface QuickReply {
   action: string;
 }
 
-export interface BankResult {
-  bank: {
+export interface CardResult {
+  card: {
     id: string;
     name: string;
     rating: number;
     category: string;
     description: string;
+    annualFee: number;
+    signupBonus: string;
     applyUrl: string;
   };
   finalScore: number;
@@ -26,7 +28,7 @@ export interface BankResult {
 
 export interface ResultsCard {
   title: string;
-  results: BankResult[];
+  results: CardResult[];
   disclosureNeeded: boolean;
 }
 

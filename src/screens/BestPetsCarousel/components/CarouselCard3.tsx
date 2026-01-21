@@ -1,6 +1,5 @@
 import React from "react";
 import { StarIcon } from "lucide-react";
-import bank5ConnectLogo from "../../../assets/brands/banks/bank5-connect.png";
 
 export const CarouselCard3 = (): JSX.Element => {
   return (
@@ -57,14 +56,14 @@ export const CarouselCard3 = (): JSX.Element => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '4px', display: 'flex', minHeight: 'auto'}}>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', textDecoration: 'underline', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Bank5 Connect
+                  Chase Sapphire Preferred®
                 </div>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '20px', fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Best Online Bank for Checking Accounts
+                  Best Credit Card for Travel Rewards
                 </div>
               </div>
               <div style={{alignSelf: 'stretch', color: '#606F7F', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '24px', wordWrap: 'break-word'}}>
-                Checking, savings and CDs with a checking-first focus and everyday access.
+                Earn valuable points with flexible transfer partners and exceptional travel benefits.
               </div>
             </div>
 
@@ -79,8 +78,8 @@ export const CarouselCard3 = (): JSX.Element => {
                 <div style={{width: '80px', height: '80px', background: 'white', boxShadow: '0px 8px 16px -3px rgba(0, 0, 0, 0.10)', borderRadius: '8px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', display: 'inline-flex'}}>
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
-                    alt="Bank5 Connect"
-                    src={bank5ConnectLogo}
+                    alt="Chase Sapphire Preferred"
+                    src="/cards/chase-sapphire-preferred.png"
                   />
                 </div>
               </div>

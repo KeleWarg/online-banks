@@ -1,5 +1,4 @@
 import React from "react";
-import capitalOneLogo from "../../../assets/brands/banks/capital-one-360.png";
 
 export const CarouselCard5 = (): JSX.Element => {
   return (
@@ -41,14 +40,14 @@ export const CarouselCard5 = (): JSX.Element => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '4px', display: 'flex', minHeight: '84px'}}>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', textDecoration: 'underline', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Capital One 360
+                  Capital One Venture X
                 </div>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '20px', fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Best Online Bank for Full-Service Banking
+                  Best Credit Card for Premium Travel
                 </div>
               </div>
               <div style={{alignSelf: 'stretch', color: '#606F7F', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '24px', wordWrap: 'break-word'}}>
-                Savings, checking and CDs with a well-rounded online banking experience.
+                Premium perks including lounge access and 10X miles on hotels & car rentals.
               </div>
             </div>
 
@@ -63,8 +62,8 @@ export const CarouselCard5 = (): JSX.Element => {
                 <div style={{width: '80px', height: '80px', background: 'white', boxShadow: '0px 8px 16px -3px rgba(0, 0, 0, 0.10)', borderRadius: '8px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', display: 'inline-flex'}}>
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
-                    alt="Capital One 360"
-                    src={capitalOneLogo}
+                    alt="Capital One Venture X"
+                    src="/cards/capital-one-venture-x.png"
                   />
                 </div>
               </div>

@@ -1,32 +1,37 @@
-const ACCOUNT_PATTERNS = [
-  { type: 'checking', patterns: [/checking/i, /spending/i, /debit/i] },
-  { type: 'savings', patterns: [/savings/i, /save/i, /high.?yield/i, /apy/i] },
-  { type: 'money_market', patterns: [/money market/i, /\bmma\b/i] },
-  { type: 'cds', patterns: [/cd\b/i, /certificate of deposit/i, /term deposit/i] },
-  { type: 'business', patterns: [/business/i, /smb/i, /small business/i] },
-  { type: 'both', patterns: [/both/i, /checking and savings/i, /combo/i] }
+const CARD_TYPE_PATTERNS = [
+  { type: 'travel', patterns: [/travel/i, /airline/i, /hotel/i, /miles/i, /points/i, /vacation/i] },
+  { type: 'cash_back', patterns: [/cash\s*back/i, /cashback/i, /cash rewards/i, /percent back/i] },
+  { type: 'rewards', patterns: [/rewards/i, /points/i, /earn/i] },
+  { type: 'balance_transfer', patterns: [/balance transfer/i, /transfer balance/i, /pay off debt/i, /0% apr/i, /zero apr/i] },
+  { type: 'credit_building', patterns: [/build credit/i, /building credit/i, /no credit/i, /bad credit/i, /first card/i, /starter/i, /secured/i] },
+  { type: 'business', patterns: [/business/i, /small business/i, /company/i] },
+  { type: 'student', patterns: [/student/i, /college/i, /university/i] }
 ];
 
 const PRIORITY_PATTERNS = [
-  { type: 'apy', patterns: [/apy/i, /interest/i, /high.?yield/i, /rate/i] },
-  { type: 'fees', patterns: [/fee/i, /no fee/i, /free/i, /low cost/i, /cheap/i] },
-  { type: 'atm', patterns: [/atm/i, /cash/i, /withdraw/i, /fee reimbursement/i] },
-  { type: 'mobile', patterns: [/mobile/i, /app/i, /deposit/i, /check deposit/i] },
-  { type: 'support', patterns: [/support/i, /customer service/i, /phone/i, /help/i] }
+  { type: 'no_annual_fee', patterns: [/no (annual )?fee/i, /fee.?free/i, /\$0 fee/i, /zero fee/i, /without fee/i] },
+  { type: 'high_rewards', patterns: [/high(est)? reward/i, /best reward/i, /most points/i, /maximize/i, /best rate/i] },
+  { type: 'signup_bonus', patterns: [/sign.?up bonus/i, /welcome bonus/i, /intro bonus/i, /bonus offer/i] },
+  { type: 'low_interest', patterns: [/low interest/i, /low apr/i, /0% interest/i, /zero interest/i] },
+  { type: 'lounge_access', patterns: [/lounge/i, /airport lounge/i, /priority pass/i] },
+  { type: 'no_foreign_fees', patterns: [/no foreign/i, /foreign transaction/i, /international/i, /travel abroad/i] }
 ];
 
-const ACCESS_PATTERNS = [
-  { type: 'direct_deposit', patterns: [/direct deposit/i] },
-  { type: 'mobile_deposit', patterns: [/mobile check/i, /mobile deposit/i, /check deposit/i] },
-  { type: 'cash_deposit', patterns: [/cash deposit/i, /deposit cash/i, /branch/i] },
-  { type: 'transfers', patterns: [/transfer/i, /ach/i, /wire/i] }
+const SPENDING_PATTERNS = [
+  { type: 'dining', patterns: [/dining/i, /restaurant/i, /eat out/i, /food/i] },
+  { type: 'groceries', patterns: [/grocery/i, /groceries/i, /supermarket/i] },
+  { type: 'gas', patterns: [/gas/i, /fuel/i, /gas station/i] },
+  { type: 'online_shopping', patterns: [/online shop/i, /amazon/i, /e-commerce/i] },
+  { type: 'entertainment', patterns: [/entertainment/i, /streaming/i, /movies/i, /concerts/i] },
+  { type: 'everything', patterns: [/everything/i, /all purchases/i, /everyday/i, /general/i] }
 ];
 
-const BALANCE_PATTERNS = [
-  { type: 'under_1000', patterns: [/under \$?1,?000/i, /less than \$?1,?000/i] },
-  { type: '1000_10000', patterns: [/\$?1,?000.*\$?10,?000/i, /between \$?1,?000 and \$?10,?000/i] },
-  { type: '10000_plus', patterns: [/over \$?10,?000/i, /above \$?10,?000/i, /more than \$?10,?000/i] },
-  { type: 'varies', patterns: [/varies/i, /depends/i, /not sure/i] }
+const CREDIT_SCORE_PATTERNS = [
+  { type: 'excellent', patterns: [/excellent credit/i, /great credit/i, /800/i, /750\+/i] },
+  { type: 'good', patterns: [/good credit/i, /700/i, /decent credit/i] },
+  { type: 'fair', patterns: [/fair credit/i, /average credit/i, /650/i, /okay credit/i] },
+  { type: 'poor', patterns: [/poor credit/i, /bad credit/i, /low credit/i, /rebuilding/i] },
+  { type: 'none', patterns: [/no credit/i, /no history/i, /first card/i, /new to credit/i] }
 ];
 
 const EDUCATION_PATTERNS = [
@@ -34,17 +39,19 @@ const EDUCATION_PATTERNS = [
   /how (do|does|to) /i,
   /explain/i,
   /tell me about/i,
-  /learn about/i
+  /learn about/i,
+  /difference between/i
 ];
 
 const READY_PATTERNS = [
   /show me/i,
   /what do you recommend/i,
   /recommend/i,
-  /best bank/i,
-  /top banks/i,
+  /best card/i,
+  /top cards/i,
   /find me/i,
-  /what are my options/i
+  /what are my options/i,
+  /which card/i
 ];
 
 // Conversational patterns for natural responses
@@ -97,28 +104,24 @@ const OFF_TOPIC_PATTERNS = [
   /are you (a |an )?(bot|ai|robot|human)/i
 ];
 
-const BANKING_RELATED = [
-  /bank/i,
-  /account/i,
-  /money/i,
-  /save|saving/i,
-  /check|checking/i,
-  /deposit/i,
-  /withdraw/i,
-  /interest/i,
-  /apy/i,
-  /fee/i,
-  /atm/i,
-  /online/i,
-  /cd\b/i,
-  /rate/i
+const CREDIT_CARD_RELATED = [
+  /card/i,
+  /credit/i,
+  /reward/i,
+  /points/i,
+  /miles/i,
+  /cash\s*back/i,
+  /apr/i,
+  /annual fee/i,
+  /bonus/i,
+  /travel/i,
+  /dining/i
 ];
 
 export const classifyIntent = (message) => {
   const normalized = message.toLowerCase().trim();
-
   const readyForResults = READY_PATTERNS.some((pattern) => pattern.test(normalized));
-  const isBankingRelated = BANKING_RELATED.some((pattern) => pattern.test(normalized));
+  const isCreditCardRelated = CREDIT_CARD_RELATED.some((pattern) => pattern.test(normalized));
 
   // Check conversational patterns first (order matters!)
   if (GREETING_PATTERNS.some((pattern) => pattern.test(normalized))) {
@@ -150,9 +153,9 @@ export const classifyIntent = (message) => {
     return { type: 'education_request', topic: message, readyForResults };
   }
 
-  for (const account of ACCOUNT_PATTERNS) {
-    if (account.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'account_signal', accountType: account.type, readyForResults };
+  for (const cardType of CARD_TYPE_PATTERNS) {
+    if (cardType.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'card_type_signal', cardType: cardType.type, readyForResults };
     }
   }
 
@@ -162,21 +165,21 @@ export const classifyIntent = (message) => {
     }
   }
 
-  for (const access of ACCESS_PATTERNS) {
-    if (access.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'access_signal', access: access.type, readyForResults };
+  for (const spending of SPENDING_PATTERNS) {
+    if (spending.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'spending_signal', spending: spending.type, readyForResults };
     }
   }
 
-  for (const balance of BALANCE_PATTERNS) {
-    if (balance.patterns.some((pattern) => pattern.test(normalized))) {
-      return { type: 'balance_signal', balance: balance.type, readyForResults };
+  for (const credit of CREDIT_SCORE_PATTERNS) {
+    if (credit.patterns.some((pattern) => pattern.test(normalized))) {
+      return { type: 'credit_score_signal', creditScore: credit.type, readyForResults };
     }
   }
 
-  // Check if it's at least banking-related but unrecognized
-  if (isBankingRelated) {
-    return { type: 'banking_unclear', readyForResults };
+  // Check if it's at least credit-card-related but unrecognized
+  if (isCreditCardRelated) {
+    return { type: 'card_unclear', readyForResults };
   }
 
   // Completely unrecognized - check message length to determine if gibberish
@@ -191,9 +194,9 @@ export const extractDataFromMessage = (message) => {
   const normalized = message.toLowerCase();
   const data = {};
 
-  for (const account of ACCOUNT_PATTERNS) {
-    if (account.patterns.some((pattern) => pattern.test(normalized))) {
-      data.accountType = account.type;
+  for (const cardType of CARD_TYPE_PATTERNS) {
+    if (cardType.patterns.some((pattern) => pattern.test(normalized))) {
+      data.cardType = cardType.type;
       break;
     }
   }
@@ -205,16 +208,16 @@ export const extractDataFromMessage = (message) => {
     }
   }
 
-  for (const access of ACCESS_PATTERNS) {
-    if (access.patterns.some((pattern) => pattern.test(normalized))) {
-      data.access = access.type;
+  for (const spending of SPENDING_PATTERNS) {
+    if (spending.patterns.some((pattern) => pattern.test(normalized))) {
+      data.spending = spending.type;
       break;
     }
   }
 
-  for (const balance of BALANCE_PATTERNS) {
-    if (balance.patterns.some((pattern) => pattern.test(normalized))) {
-      data.balance = balance.type;
+  for (const credit of CREDIT_SCORE_PATTERNS) {
+    if (credit.patterns.some((pattern) => pattern.test(normalized))) {
+      data.creditScore = credit.type;
       break;
     }
   }

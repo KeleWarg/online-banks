@@ -1,5 +1,4 @@
 import React from "react";
-import americanExpressLogo from "../../../assets/brands/banks/american-express.png";
 
 export const CarouselCard4 = (): JSX.Element => {
   return (
@@ -41,14 +40,14 @@ export const CarouselCard4 = (): JSX.Element => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '4px', display: 'flex', minHeight: '84px'}}>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', textDecoration: 'underline', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  American Express®
+                  American Express® Gold
                 </div>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '20px', fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Best Online Bank for High APYs
+                  Best Credit Card for Dining & Groceries
                 </div>
               </div>
               <div style={{alignSelf: 'stretch', color: '#606F7F', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '24px', wordWrap: 'break-word'}}>
-                High‑yield savings account designed to maximize APY with a simple online setup.
+                Earn 4X points at restaurants and U.S. supermarkets with valuable monthly credits.
               </div>
             </div>
 
@@ -63,8 +62,8 @@ export const CarouselCard4 = (): JSX.Element => {
                 <div style={{width: '80px', height: '80px', background: 'white', boxShadow: '0px 8px 16px -3px rgba(0, 0, 0, 0.10)', borderRadius: '8px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', display: 'inline-flex'}}>
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
-                    alt="American Express High Yield Savings"
-                    src={americanExpressLogo}
+                    alt="American Express Gold Card"
+                    src="/cards/amex-gold.png"
                   />
                 </div>
               </div>

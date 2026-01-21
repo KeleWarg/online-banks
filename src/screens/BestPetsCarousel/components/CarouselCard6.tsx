@@ -1,5 +1,4 @@
 import React from "react";
-import sofiLogo from "../../../assets/brands/banks/sofi.png";
 
 export const CarouselCard6 = (): JSX.Element => {
   return (
@@ -53,14 +52,14 @@ export const CarouselCard6 = (): JSX.Element => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '4px', display: 'flex', minHeight: 'auto'}}>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', textDecoration: 'underline', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  SoFi®
+                  Wells Fargo Active Cash®
                 </div>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '20px', fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Best for Mobile Check Deposit
+                  Best for Flat-Rate Cash Back
                 </div>
               </div>
               <div style={{alignSelf: 'stretch', color: '#606F7F', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '24px', wordWrap: 'break-word'}}>
-                Checking and savings built for mobile-first access with streamlined deposits.
+                Earn unlimited 2% cash rewards on purchases with no annual fee.
               </div>
             </div>
 
@@ -75,8 +74,8 @@ export const CarouselCard6 = (): JSX.Element => {
                 <div style={{width: '80px', height: '80px', background: 'white', boxShadow: '0px 8px 16px -3px rgba(0, 0, 0, 0.10)', borderRadius: '8px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', display: 'inline-flex'}}>
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
-                    alt="SoFi"
-                    src={sofiLogo}
+                    alt="Wells Fargo Active Cash"
+                    src="/cards/wells-fargo-active-cash.png"
                   />
                 </div>
               </div>

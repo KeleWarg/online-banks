@@ -86,7 +86,7 @@ export const BankingChatContainer: React.FC<BankingChatContainerProps> = ({ isOp
                   Forbes Advisor
                 </h2>
                 <p className="text-xs text-gray-500" style={{ fontFamily: 'Work Sans' }}>
-                  Online banking assistant
+                  Credit card assistant
                 </p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export const BankingChatContainer: React.FC<BankingChatContainerProps> = ({ isOp
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ask about APYs, fees, or account types..."
+                  placeholder="Ask about rewards, fees, or card types..."
                   disabled={isTyping}
                   className={`
                     w-full px-4 py-3

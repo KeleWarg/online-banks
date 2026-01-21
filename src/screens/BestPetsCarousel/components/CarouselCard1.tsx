@@ -1,5 +1,4 @@
 import React from "react";
-import discoverBankLogo from "../../../assets/brands/banks/discover-bank.png";
 
 export const CarouselCard1 = (): JSX.Element => {
   return (
@@ -42,14 +41,14 @@ export const CarouselCard1 = (): JSX.Element => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '4px', display: 'flex', minHeight: '84px'}}>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', textDecoration: 'underline', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Discover® Bank
+                  Chase Freedom Unlimited®
                 </div>
                 <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontSize: '20px', fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '26px', wordWrap: 'break-word'}}>
-                  Best Online Bank for No Fees
+                  Best Credit Card for No Annual Fee
                 </div>
               </div>
               <div style={{alignSelf: 'stretch', color: '#606F7F', fontSize: '16px', fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '24px', wordWrap: 'break-word'}}>
-                Savings, checking and CDs with a focus on minimizing service fees.
+                Earn unlimited 1.5% cash back with no annual fee and a generous intro APR offer.
               </div>
             </div>
 
@@ -64,8 +63,8 @@ export const CarouselCard1 = (): JSX.Element => {
                 <div style={{width: '80px', height: '80px', background: 'white', boxShadow: '0px 8px 16px -3px rgba(0, 0, 0, 0.10)', borderRadius: '8px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', display: 'inline-flex'}}>
                   <img
                     style={{width: '64px', height: '64px', objectFit: 'contain'}}
-                    alt="Discover Bank"
-                    src={discoverBankLogo}
+                    alt="Chase Freedom Unlimited"
+                    src="/cards/chase-freedom-unlimited.png"
                   />
                 </div>
               </div>

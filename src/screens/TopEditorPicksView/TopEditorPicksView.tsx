@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TableCell } from '../../components/common';
 import { COST_DATA } from '../../data/insurance-providers';
-import bank5ConnectLogo from '../../assets/brands/banks/bank5-connect.png';
-import quonticBankLogo from '../../assets/brands/banks/quontic-bank.png';
-import allyBankLogo from '../../assets/brands/banks/ally-bank.png';
 
 interface TopEditorPicksViewProps {
   onBack: () => void;
@@ -67,8 +64,8 @@ export const TopEditorPicksView: React.FC<TopEditorPicksViewProps> = ({ onBack }
                 <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 24, display: 'flex'}}>
                   <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 24, display: 'flex'}}>
                     <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'flex'}}>
-                    <div className="text-[20px] xs:text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] leading-[26px] xs:leading-[30px] sm:leading-[34px] md:leading-[39px] lg:leading-[44px] xl:leading-[48px]" style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontFamily: 'Work Sans', fontWeight: '700'}}>Editorial Picks: Best Online Banks</div>
-                      <div style={{alignSelf: 'stretch', color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>We analyzed the products and services of 60 online banks, comparing the factors that matter most: available accounts, digital banking tools, service fees, ATM networks, interest rates and the overall customer experience.<br/>APYs and account details are accurate as of January 9, 2026.</div>
+                    <div className="text-[20px] xs:text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] leading-[26px] xs:leading-[30px] sm:leading-[34px] md:leading-[39px] lg:leading-[44px] xl:leading-[48px]" style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontFamily: 'Work Sans', fontWeight: '700'}}>Editorial Picks: Best Credit Cards</div>
+                      <div style={{alignSelf: 'stretch', color: '#333333', fontSize: 18, fontFamily: 'Georgia', fontWeight: '400', lineHeight: '29.12px', wordWrap: 'break-word'}}>We analyzed over 85 credit cards from major issuers, comparing the factors that matter most: rewards rates, welcome bonuses, annual fees, travel perks, cash back rates and the overall cardholder experience.<br/>Offers and card details are accurate as of January 9, 2026.</div>
                     </div>
                   </div>
                 </div>
@@ -306,8 +303,8 @@ export const TopEditorPicksView: React.FC<TopEditorPicksViewProps> = ({ onBack }
               <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 40, display: 'flex'}}>
                 {/* Title and Description */}
                 <div style={{width: '100%', maxWidth: 755, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'flex'}}>
-                <div className="text-[20px] xs:text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] leading-[26px] xs:leading-[30px] sm:leading-[34px] md:leading-[39px] lg:leading-[44px] xl:leading-[48px]" style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontFamily: 'Work Sans', fontWeight: '700'}}>Summary of the Best Online Banks</div>
-                  <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: '#606F7F', fontSize: 16, fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '26px', wordWrap: 'break-word'}}>Understanding what each bank is best at helps you match the right account to your needs.</div>
+                <div className="text-[20px] xs:text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] leading-[26px] xs:leading-[30px] sm:leading-[34px] md:leading-[39px] lg:leading-[44px] xl:leading-[48px]" style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: 'black', fontFamily: 'Work Sans', fontWeight: '700'}}>Summary of the Best Credit Cards</div>
+                  <div style={{alignSelf: 'stretch', justifyContent: 'center', display: 'flex', flexDirection: 'column', color: '#606F7F', fontSize: 16, fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '26px', wordWrap: 'break-word'}}>Understanding what each card excels at helps you match the right credit card to your spending habits.</div>
                 </div>
                 <div style={{alignSelf: 'stretch', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 24, display: 'flex'}}>
                   <div style={{width: '100%', maxWidth: 965, overflow: 'hidden', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>

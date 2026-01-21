@@ -38,24 +38,24 @@ const NAVIGATION_TABS: NavigationTab[] = [
 
 const STATISTICS_DATA: StatisticData[] = [
   {
-    number: "60",
-    title: "Online Banks Analyzed",
-    description: "National online banks and neobanks reviewed for coverage.",
+    number: "85+",
+    title: "Credit Cards Analyzed",
+    description: "Top credit cards from major issuers reviewed for rewards and benefits.",
   },
   {
-    number: "12",
+    number: "15",
     title: "Data Points Scored",
-    description: "APYs, fees, ATM access, and digital experience.",
+    description: "Rewards rates, annual fees, welcome bonuses, and card perks.",
   },
   {
-    number: "7",
+    number: "8",
     title: "Scoring Categories",
-    description: "Product offerings, APY, fees, ATM network, and more.",
+    description: "Travel rewards, cash back, dining, no annual fee, and more.",
   },
   {
     number: "Jan 9, 2026",
-    title: "Rates Verified",
-    description: "APYs and account details accurate as of this date.",
+    title: "Offers Verified",
+    description: "Rewards rates and bonuses accurate as of this date.",
   },
 ];
 
@@ -136,7 +136,7 @@ const OverviewSection: React.FC = () => (
           wordWrap: 'break-word',
           marginBottom: '24px'
         }}>
-          We analyzed the products and services of 60 online banks, comparing the factors that matter most: available accounts, digital banking tools, service fees, ATM networks, interest rates and the overall customer experience. Data is updated regularly.
+          We analyzed over 85 credit cards from major issuers, comparing the factors that matter most: rewards rates, welcome bonuses, annual fees, travel perks, cash back rates and the overall cardholder experience. Data is updated regularly.
         </p>
       </div>
     </div>
@@ -153,7 +153,7 @@ const OverviewSection: React.FC = () => (
 
         <div className="self-stretch justify-between items-center inline-flex flex-wrap relative z-10">
           <div className="max-w-[600px] min-w-[272px] text-white text-2xl font-semibold leading-[30px] break-words" style={{ fontFamily: 'Work Sans' }}>
-            How We Evaluate Online Banks
+            How We Evaluate Credit Cards
           </div>
           <div className="justify-end items-start gap-6 flex flex-wrap">
             <div className="w-[196px] justify-start items-center gap-2 flex">
@@ -199,8 +199,8 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
   
   const breadcrumbItems = [
     { label: "ADVISOR", href: "#top" },
-    { label: "BANKING", href: "#top" },
-    { label: "ONLINE BANKS" },
+    { label: "CREDIT CARDS", href: "#top" },
+    { label: "BEST CREDIT CARDS" },
   ];
 
   const authors = [
@@ -219,13 +219,13 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
   ];
 
   const questionCards = [
-    "Which online banks offer the highest APYs?",
-    "Which banks have no monthly maintenance fees?",
-    "Best online banks for checking accounts",
-    "Which banks reimburse ATM fees?",
-    "Do online banks offer mobile check deposit?",
-    "Are online banks FDIC-insured?",
-    "How do online banks compare to traditional banks?",
+    "Which credit cards offer the best travel rewards?",
+    "Which cards have no annual fee?",
+    "Best credit cards for cash back",
+    "Which cards offer the best welcome bonuses?",
+    "What are the best cards for dining rewards?",
+    "Which cards have no foreign transaction fees?",
+    "How do travel cards compare to cash back cards?",
   ];
 
   return (
@@ -284,7 +284,7 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
 
             <div className="flex flex-col items-start gap-3 relative w-full min-w-0 max-w-full">
               <h1 className="w-full max-w-full text-[#333333] text-[40px] leading-[48px] sm:text-[36px] md:text-[40px] lg:text-[48px] xl:text-[56px] font-bold sm:leading-[1.1] md:leading-[1.2] lg:leading-[1.2] constrain-text" style={{ fontFamily: 'Schnyder S' }}>
-                10 Best Online Banks
+                Best Credit Cards Of 2026
               </h1>
 
               <p className="w-full max-w-full font-fixed-styles-utility-medium-regular font-[number:var(--fixed-styles-utility-medium-regular-font-weight)] text-[#333333] text-[length:var(--fixed-styles-utility-medium-regular-font-size)] tracking-[var(--fixed-styles-utility-medium-regular-letter-spacing)] leading-[var(--fixed-styles-utility-medium-regular-line-height)] [font-style:var(--fixed-styles-utility-medium-regular-font-style)] constrain-text">
@@ -400,9 +400,9 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
                 </div>
 
                 <p className="[font-family:'Work_Sans',Helvetica] font-normal text-black text-sm tracking-[0] leading-6 break-words overflow-wrap-anywhere w-full">
-                  We analyzed the products and services of 60 online banks, comparing
-                  the factors that matter most: available accounts, digital banking tools,
-                  service fees, ATM networks, interest rates and the overall customer experience.{" "}
+                  We analyzed over 85 credit cards from major issuers, comparing
+                  the factors that matter most: rewards rates, welcome bonuses, annual fees,
+                  travel perks, cash back rates and the overall cardholder experience.{" "}
                   <span 
                     className="underline cursor-pointer"
                     onClick={() => {
@@ -426,11 +426,11 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
                 <CardContent className="p-0 flex items-center justify-center gap-2.5 pt-5 pb-0 px-0">
                   <Button
                     variant="ghost"
-                    onClick={() => window.open('https://www.forbes.com/advisor/banking/savings/best-high-yield-savings-accounts/', '_blank')}
+                    onClick={() => window.open('https://www.forbes.com/advisor/credit-cards/best-credit-cards/', '_blank')}
                     className="inline-flex items-center gap-2 pt-0 pb-4 px-4 h-auto hover:bg-transparent"
                   >
                     <span className="[font-family:'Work_Sans',Helvetica] font-normal text-black text-base tracking-[0] leading-6">
-                      Find the best accounts
+                      Find the best credit cards
                     </span>
                     <img
                       className="w-6 h-6"
@@ -449,31 +449,31 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
                 <div style={{width: 'auto', height: 40, padding: '6px 10px', background: 'rgba(0, 0, 0, 0.6)', borderRadius: 8, backdropFilter: 'blur(6px)', justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
                   <div style={{justifyContent: 'flex-start', alignItems: 'center', gap: 4, display: 'flex', flexShrink: 0}}>
                     <div style={{width: 24, height: 24, position: 'relative', overflow: 'hidden', flexShrink: 0}}>
-                      <img src="/activity-heart.svg" alt="Top APYs" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
+                      <img src="/activity-heart.svg" alt="Top Rewards" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
                     </div>
-                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Top APYs</div>
+                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Top Rewards</div>
                   </div>
-                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Rates verified Jan 9, 2026</div>
+                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Offers verified Jan 9, 2026</div>
                 </div>
                 
                 <div style={{width: 'auto', height: 40, padding: '6px 10px', background: 'rgba(0, 0, 0, 0.6)', borderRadius: 8, backdropFilter: 'blur(6px)', justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
                   <div style={{justifyContent: 'flex-start', alignItems: 'center', gap: 4, display: 'flex', flexShrink: 0}}>
                     <div style={{width: 24, height: 24, position: 'relative', overflow: 'hidden', flexShrink: 0}}>
-                      <img src="/activity-heart.svg" alt="Low Fees" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
+                      <img src="/activity-heart.svg" alt="Welcome Bonuses" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
                     </div>
-                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Low Fees</div>
+                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Welcome Bonuses</div>
                   </div>
-                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Fewer monthly and ATM fees</div>
+                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Up to 75,000+ points</div>
                 </div>
                 
                 <div style={{width: 'auto', height: 40, padding: '6px 10px', background: 'rgba(0, 0, 0, 0.6)', borderRadius: 8, backdropFilter: 'blur(6px)', justifyContent: 'flex-start', alignItems: 'center', gap: 8, display: 'inline-flex'}}>
                   <div style={{justifyContent: 'flex-start', alignItems: 'center', gap: 4, display: 'flex', flexShrink: 0}}>
                     <div style={{width: 24, height: 24, position: 'relative', overflow: 'hidden', flexShrink: 0}}>
-                      <img src="/activity-heart.svg" alt="ATM Access" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
+                      <img src="/activity-heart.svg" alt="No Annual Fee" style={{width: 24, height: 24, position: 'absolute', filter: 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(100%)'}} />
                     </div>
-                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>ATM Access</div>
+                    <div style={{color: 'rgb(191, 191, 191)', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>No Annual Fee</div>
                   </div>
-                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Surcharge-free networks</div>
+                  <div style={{textAlign: 'right', color: 'white', fontSize: 12, fontFamily: 'Work Sans', fontWeight: '600', lineHeight: '12px', wordWrap: 'break-word', flexShrink: 0, whiteSpace: 'nowrap'}}>Cards with $0 annual fee</div>
                 </div>
               </div>
             </div>
@@ -582,7 +582,7 @@ export const ContentSection = ({ onOpenChat, quickDiveRef, onShowTopPicks, onSho
                           wordWrap: 'break-word'
                         }}
                       >
-                        How We Found The Best Online Banks
+                        How We Found The Best Credit Cards
                       </h2>
                     </header>
 

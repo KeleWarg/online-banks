@@ -37,12 +37,12 @@ export const BestPetsCarousel = (): JSX.Element => {
                 fontWeight: '700',
                 wordWrap: 'break-word'
               }}>
-                Best Online Banks of 2026
+                Best Credit Cards of 2026
               </h2>
 
               <p className="w-full [font-family:'Work_Sans',Helvetica] font-normal text-[#606f7f] text-sm sm:text-base tracking-[0] leading-[1.6]">
-                Understanding which online bank excels for your needs is key to choosing
-                the right account.
+                Understanding which credit card excels for your spending habits is key to maximizing
+                rewards and benefits.
               </p>
             </header>
           </div>
@@ -81,7 +81,7 @@ export const BestPetsCarousel = (): JSX.Element => {
                     </div>
                   </div>
                 </div>
-                <div style={{alignSelf: 'stretch', color: 'var(--Color-Foreground-fg-body, #383C43)', fontSize: 16, fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '26px', wordWrap: 'break-word'}}>Data Verified: Jan 9, 2026 | Source: Forbes Advisor analysis</div>
+                <div style={{alignSelf: 'stretch', color: 'var(--Color-Foreground-fg-body, #383C43)', fontSize: 16, fontFamily: 'Work Sans', fontWeight: '400', lineHeight: '26px', wordWrap: 'break-word'}}>Offers Verified: Jan 9, 2026 | Source: Forbes Advisor analysis</div>
               </div>
 
               <nav className="flex items-center gap-3 sm:gap-4">

@@ -1,14 +1,15 @@
 import React from 'react';
-import type { ResultsCard as ResultsCardType, BankResult } from '../../types/bankingChat';
-import { ChevronRight, AlertCircle } from 'lucide-react';
+import type { ResultsCard as ResultsCardType, CardResult } from '../../types/bankingChat';
+import { ChevronRight, AlertCircle, CreditCard } from 'lucide-react';
 
 interface ResultsCardProps {
   results: ResultsCardType;
 }
 
-const BankRow: React.FC<{ result: BankResult; rank: number }> = ({ result, rank }) => {
-  const { bank, matchReasons } = result;
-  const ratingText = `${bank.rating.toFixed(1)} / 5`;
+const CardRow: React.FC<{ result: CardResult; rank: number }> = ({ result, rank }) => {
+  const { card, matchReasons } = result;
+  const ratingText = `${card.rating.toFixed(1)} / 5`;
+  const feeText = card.annualFee === 0 ? 'No annual fee' : `$${card.annualFee}/year`;
 
   return (
     <div 
@@ -25,27 +26,38 @@ const BankRow: React.FC<{ result: BankResult; rank: number }> = ({ result, rank 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
           <h4 className="font-semibold text-gray-900 text-base" style={{ fontFamily: 'Work Sans' }}>
-            {bank.name}
+            {card.name}
           </h4>
           <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
             {ratingText}
           </span>
         </div>
-        <p className="text-xs text-gray-500 mb-2" style={{ fontFamily: 'Work Sans' }}>
-          {bank.category}
-        </p>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xs text-gray-500" style={{ fontFamily: 'Work Sans' }}>
+            {card.category}
+          </span>
+          <span className="text-xs text-gray-400">•</span>
+          <span className={`text-xs font-medium ${card.annualFee === 0 ? 'text-green-600' : 'text-gray-600'}`} style={{ fontFamily: 'Work Sans' }}>
+            {feeText}
+          </span>
+        </div>
         <div className="space-y-1">
           {matchReasons.slice(0, 2).map((reason, idx) => (
             <div key={idx} className="flex items-center gap-1.5 text-sm text-gray-600" style={{ fontFamily: 'Work Sans' }}>
-              <span className="text-green-500">•</span>
+              <span className="text-green-500">✓</span>
               {reason}
             </div>
           ))}
         </div>
+        {card.signupBonus && card.signupBonus !== 'N/A - focus on ongoing rewards' && (
+          <div className="mt-2 text-xs text-[#007AC8] bg-blue-50 px-2 py-1 rounded inline-block" style={{ fontFamily: 'Work Sans' }}>
+            Bonus: {card.signupBonus}
+          </div>
+        )}
       </div>
 
       <a
-        href={bank.applyUrl}
+        href={card.applyUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="flex-shrink-0 flex items-center gap-1 px-3 py-2 bg-[#007AC8] text-white rounded-lg text-sm font-medium hover:bg-[#006bb3] transition-colors"
@@ -61,7 +73,8 @@ const BankRow: React.FC<{ result: BankResult; rank: number }> = ({ result, rank 
 export const ResultsCard: React.FC<ResultsCardProps> = ({ results }) => {
   return (
     <div className="mt-4 rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm">
-      <div className="px-4 py-3 bg-gradient-to-r from-[#007AC8] to-[#0066a3]">
+      <div className="px-4 py-3 bg-gradient-to-r from-[#007AC8] to-[#0066a3] flex items-center gap-2">
+        <CreditCard className="w-4 h-4 text-white" />
         <h3 className="font-bold text-white text-sm tracking-wide" style={{ fontFamily: 'Work Sans' }}>
           {results.title}
         </h3>
@@ -69,7 +82,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({ results }) => {
 
       <div>
         {results.results.map((result, index) => (
-          <BankRow key={result.bank.id} result={result} rank={index + 1} />
+          <CardRow key={result.card.id} result={result} rank={index + 1} />
         ))}
       </div>
 
